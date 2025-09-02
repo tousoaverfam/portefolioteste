@@ -15,31 +15,33 @@ body {
 /* Cabeçalho */
 header {
   text-align: center;
-  padding: 20px;
+  padding: 40px 20px 30px 20px; /* mais espaçamento */
   position: relative;
 }
 
 .logo h1 {
-  font-size: 28px;
+  font-size: 32px;
   letter-spacing: 4px;
+  margin-bottom: 10px;
 }
 
 .logo p {
-  font-size: 12px;
-  letter-spacing: 2px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 25px;
 }
 
 /* Menu desktop */
 nav {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
-  margin: 0 12px;
+  margin: 0 14px;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 300;
 }
 
@@ -52,9 +54,9 @@ nav a.ativo {
   display: none;
   cursor: pointer;
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 24px;
+  top: 25px;
+  left: 20px; /* agora à esquerda */
+  font-size: 26px;
 }
 
 @media (max-width: 768px) {
@@ -63,15 +65,15 @@ nav a.ativo {
     flex-direction: column;
     background: #111;
     position: absolute;
-    top: 70px;
-    right: 0;
+    top: 80px;
+    left: 0;
     width: 200px;
     padding: 20px;
   }
 
   nav a {
     display: block;
-    margin: 10px 0;
+    margin: 12px 0;
   }
 
   nav.show {
