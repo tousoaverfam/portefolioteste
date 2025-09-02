@@ -1,1 +1,121 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+.logo h1 {
+  font-size: 28px;
+  letter-spacing: 4px;
+}
+
+.logo p {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 12px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+nav a.ativo {
+  border-bottom: 2px solid #fff;
+}
+
+/* Hero */
+.hero img {
+  width: 100%;
+  height: auto;
+}
+
+/* Conteúdo */
+section {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+section h2 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Galeria (para portefólio e projetos) */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.galeria .card {
+  background: #111;
+  border-radius: 5px;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+
+.galeria img {
+  width: 100%;
+  display: block;
+}
+
+.galeria h3 {
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Formulário */
+form input, form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 3px;
+}
+
+form button {
+  padding: 12px 20px;
+  border: none;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #ccc;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  font-size: 14px;
+  margin-top: 40px;
+}
