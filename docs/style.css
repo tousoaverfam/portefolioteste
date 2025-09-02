@@ -1,4 +1,4 @@
-/* Reset básico */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -16,6 +16,7 @@ body {
 header {
   text-align: center;
   padding: 20px;
+  position: relative;
 }
 
 .logo h1 {
@@ -28,6 +29,7 @@ header {
   letter-spacing: 2px;
 }
 
+/* Menu desktop */
 nav {
   margin-top: 10px;
 }
@@ -43,6 +45,42 @@ nav a {
 
 nav a.ativo {
   border-bottom: 2px solid #fff;
+}
+
+/* Menu mobile */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: #111;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    padding: 20px;
+  }
+
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  nav.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
 
 /* Hero */
@@ -64,7 +102,7 @@ section h2 {
   margin-bottom: 20px;
 }
 
-/* Galeria (para portefólio e projetos) */
+/* Galeria */
 .galeria {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -86,29 +124,6 @@ section h2 {
 .galeria h3 {
   padding: 10px;
   font-size: 16px;
-}
-
-/* Formulário */
-form input, form textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 3px;
-}
-
-form button {
-  padding: 12px 20px;
-  border: none;
-  background: #fff;
-  color: #000;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-form button:hover {
-  background: #ccc;
 }
 
 /* Rodapé */
