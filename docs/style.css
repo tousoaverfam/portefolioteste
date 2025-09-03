@@ -10,6 +10,9 @@ body {
   background-color: #000;
   color: #fff;
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Cabeçalho */
@@ -17,8 +20,6 @@ header {
   text-align: center;
   padding: 40px 20px 30px 20px;
   position: relative;
-  z-index: 10;
-  background: #000;
 }
 
 .logo h1 {
@@ -69,7 +70,7 @@ nav a.ativo {
     position: absolute;
     top: 80px;
     left: 0;
-    width: 100%;
+    width: 200px;
     padding: 20px;
   }
 
@@ -90,29 +91,33 @@ nav a.ativo {
 /* Carrossel */
 .carousel-container {
   overflow: hidden;
+  margin: 40px auto;
   width: 100%;
 }
 
 .carousel {
   display: flex;
   scroll-behavior: smooth;
-  cursor: grab;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
-.carousel.active {
-  cursor: grabbing;
+.carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .carousel-item {
   flex: 0 0 100%;
-  max-width: 100%;
-  user-select: none;
+  height: 400px;
+  scroll-snap-align: start;
+  position: relative;
 }
 
 .carousel-item img {
   width: 100%;
-  display: block;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Conteúdo */
@@ -125,4 +130,15 @@ section {
 section h2 {
   text-align: center;
   font-weight: 500;
-  margin-bottom:
+  margin-bottom: 20px;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  font-size: 14px;
+  margin-top: auto;
+  width: 100%;
+}
