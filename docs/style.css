@@ -69,7 +69,7 @@ nav a.ativo {
     position: absolute;
     top: 80px;
     left: 0;
-    width: 200px;
+    width: 100%;
     padding: 20px;
   }
 
@@ -91,7 +91,6 @@ nav a.ativo {
 .carousel-container {
   overflow: hidden;
   width: 100%;
-  margin: 40px auto;
 }
 
 .carousel {
@@ -126,14 +125,4 @@ section {
 section h2 {
   text-align: center;
   font-weight: 500;
-  margin-bottom: 20px;
-}
-
-/* Rodapé */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #111;
-  font-size: 14px;
-  margin-top: 40px;
-}
+  margin-bottom:
