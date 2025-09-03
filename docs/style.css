@@ -10,6 +10,9 @@ body {
   background-color: #000;
   color: #fff;
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Cabeçalho */
@@ -17,8 +20,6 @@ header {
   text-align: center;
   padding: 40px 20px 30px 20px;
   position: relative;
-  z-index: 10;
-  background: #000;
 }
 
 .logo h1 {
@@ -87,46 +88,46 @@ nav a.ativo {
   }
 }
 
-/* Carrossel */
-.carousel-container {
-  overflow: hidden;
-  width: 100%;
-  margin: 40px auto;
-}
-
-.carousel {
-  display: flex;
-  scroll-behavior: smooth;
-  cursor: grab;
-}
-
-.carousel.active {
-  cursor: grabbing;
-}
-
-.carousel-item {
-  flex: 0 0 100%;
-  max-width: 100%;
-  user-select: none;
-}
-
-.carousel-item img {
-  width: 100%;
-  display: block;
-  height: auto;
-}
-
-/* Conteúdo */
-section {
+/* Conteúdo homepage */
+.conteudo-home {
   max-width: 1000px;
   margin: 40px auto;
   padding: 0 20px;
+  text-align: justify;
 }
 
-section h2 {
+.conteudo-home h2 {
   text-align: center;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+/* Imagem alinhada à esquerda */
+.img-esquerda {
+  float: left;
+  margin: 0 20px 20px 0;
+  max-width: 40%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Imagem alinhada à direita */
+.img-direita {
+  float: right;
+  margin: 0 0 20px 20px;
+  max-width: 40%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+  .img-esquerda, .img-direita {
+    float: none;
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+  }
 }
 
 /* Rodapé */
@@ -135,5 +136,6 @@ footer {
   padding: 20px;
   background: #111;
   font-size: 14px;
-  margin-top: 40px;
+  margin-top: auto;
+  width: 100%;
 }
