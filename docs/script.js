@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.classList.toggle("show");
   });
 
-  // Carrossel arrastável
   const carousels = document.querySelectorAll(".carousel");
 
   carousels.forEach(carousel => {
@@ -14,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let startX;
     let scrollLeft;
 
+    // Mouse events
     carousel.addEventListener("mousedown", e => {
       isDown = true;
       carousel.classList.add("active");
@@ -35,11 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - carousel.offsetLeft;
-      const walk = (x - startX) * 2; // Velocidade do arrasto
+      const walk = (x - startX) * 2;
       carousel.scrollLeft = scrollLeft - walk;
     });
 
-    // Suporte para touch devices
+    // Touch events
     let startTouchX = 0;
     let scrollStart = 0;
 
