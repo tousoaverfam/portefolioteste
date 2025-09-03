@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.classList.toggle("show");
   });
 
+  // Carrossel arrastável
   const carousels = document.querySelectorAll(".carousel");
 
   carousels.forEach(carousel => {
@@ -13,45 +14,44 @@ document.addEventListener("DOMContentLoaded", () => {
     let startX;
     let scrollLeft;
 
-    // Mouse events
     carousel.addEventListener("mousedown", e => {
       isDown = true;
+      carousel.classList.add("active");
       startX = e.pageX - carousel.offsetLeft;
       scrollLeft = carousel.scrollLeft;
     });
 
     carousel.addEventListener("mouseleave", () => {
       isDown = false;
+      carousel.classList.remove("active");
     });
 
     carousel.addEventListener("mouseup", () => {
       isDown = false;
+      carousel.classList.remove("active");
     });
 
     carousel.addEventListener("mousemove", e => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - carousel.offsetLeft;
-      const walk = (x - startX) * 2;
+      const walk = (x - startX) * 2; // Velocidade do arrasto
       carousel.scrollLeft = scrollLeft - walk;
     });
 
-    // Touch events
-    carousel.addEventListener("touchstart", e => {
-      isDown = true;
-      startX = e.touches[0].pageX - carousel.offsetLeft;
-      scrollLeft = carousel.scrollLeft;
-    });
+    // Suporte para touch devices
+    let startTouchX = 0;
+    let scrollStart = 0;
 
-    carousel.addEventListener("touchend", () => {
-      isDown = false;
+    carousel.addEventListener("touchstart", e => {
+      startTouchX = e.touches[0].pageX;
+      scrollStart = carousel.scrollLeft;
     });
 
     carousel.addEventListener("touchmove", e => {
-      if (!isDown) return;
-      const x = e.touches[0].pageX - carousel.offsetLeft;
-      const walk = (x - startX) * 2;
-      carousel.scrollLeft = scrollLeft - walk;
+      const x = e.touches[0].pageX;
+      const walk = (x - startTouchX) * 2;
+      carousel.scrollLeft = scrollStart - walk;
     });
   });
 });
