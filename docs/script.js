@@ -16,19 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mouse events
     carousel.addEventListener("mousedown", e => {
       isDown = true;
-      carousel.classList.add("active");
       startX = e.pageX - carousel.offsetLeft;
       scrollLeft = carousel.scrollLeft;
     });
 
     carousel.addEventListener("mouseleave", () => {
       isDown = false;
-      carousel.classList.remove("active");
     });
 
     carousel.addEventListener("mouseup", () => {
       isDown = false;
-      carousel.classList.remove("active");
     });
 
     carousel.addEventListener("mousemove", e => {
@@ -40,18 +37,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Touch events
-    let startTouchX = 0;
-    let scrollStart = 0;
-
     carousel.addEventListener("touchstart", e => {
-      startTouchX = e.touches[0].pageX;
-      scrollStart = carousel.scrollLeft;
+      isDown = true;
+      startX = e.touches[0].pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener("touchend", () => {
+      isDown = false;
     });
 
     carousel.addEventListener("touchmove", e => {
-      const x = e.touches[0].pageX;
-      const walk = (x - startTouchX) * 2;
-      carousel.scrollLeft = scrollStart - walk;
+      if (!isDown) return;
+      const x = e.touches[0].pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
     });
   });
 });
