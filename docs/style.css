@@ -105,6 +105,11 @@ nav a.ativo {
   cursor: pointer;
 }
 
+.no-hover:hover {
+  background: none;
+  cursor: default;
+}
+
 /* Hero */
 .hero .placeholder {
   width: 100%;
@@ -114,24 +119,25 @@ nav a.ativo {
 
 /* Estrutura imagens + texto */
 .content-section {
-  max-width: 1400px;
-  margin: 40px auto;
+  max-width: 1200px;
+  margin: 50px auto;
   padding: 0 20px;
   position: relative;
+  text-align: justify;
 }
 
 .image-left {
   float: left;
-  width: 200px;
-  height: 200px;
-  margin: 0 20px 20px 0;
+  width: 280px;
+  height: 280px;
+  margin: 0 25px 25px 0;
 }
 
 .image-right {
   float: right;
-  width: 200px;
-  height: 200px;
-  margin: 40px 0 20px 20px;
+  width: 280px;
+  height: 280px;
+  margin: 60px 0 25px 25px;
 }
 
 /* Carrosséis */
@@ -155,7 +161,7 @@ nav a.ativo {
 
 .carousel-item {
   flex: 0 0 auto;
-  height: 180px;
+  height: 200px;
   margin: 0 10px;
 }
 
