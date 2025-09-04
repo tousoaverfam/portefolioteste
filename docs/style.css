@@ -86,9 +86,7 @@ nav a.ativo { border-bottom: 2px solid #fff; }
 /* Content: justified text */
 .content-section .justificado { text-align: justify; }
 
-/* Larger images: image1 and image2 sizes
-   image2 offset top so its topo fica um pouco abaixo do bottom da image1,
-   mas sem excesso de espaçamento. */
+/* Larger images: image1 and image2 sizes */
 .image-left {
   float: left;
   width: 340px;
@@ -100,8 +98,7 @@ nav a.ativo { border-bottom: 2px solid #fff; }
   float: right;
   width: 340px;
   height: 340px;
-  /* top offset: image-left height (340) + small gap (20) = 360 -> top da image2 fica ligeiramente abaixo do bottom da image1 */
-  margin: 360px 0 20px 28px;
+  margin: 0 0 20px 28px; /* alinhamento como image-left */
 }
 
 /* Clear floats */
@@ -111,7 +108,7 @@ nav a.ativo { border-bottom: 2px solid #fff; }
   clear: both;
 }
 
-/* Spacing between homepage blocks (mais espaço entre secções) */
+/* Spacing between homepage blocks */
 .content-section { margin-bottom: 70px; }
 .carousel-section { margin-bottom: 70px; }
 .timeline-section { margin-bottom: 80px; }
@@ -135,17 +132,17 @@ nav a.ativo { border-bottom: 2px solid #fff; }
   will-change: transform;
 }
 
-/* carousel item base — widths are set dynamically by JS; provide consistent height and gap */
+/* carousel item base */
 .carousel-item {
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 20px; /* gap between items */
+  margin-right: 20px;
   box-sizing: border-box;
 }
 
-/* Add dashed stroke to items (placeholders already carry .placeholder class, so border will be visible) */
+/* Add dashed stroke to items (placeholders) */
 .carousel-item.placeholder { border: 2px dashed #fff; background: transparent; }
 
 /* Carousel buttons */
@@ -198,6 +195,11 @@ nav a.ativo { border-bottom: 2px solid #fff; }
   justify-content: center;
   font-weight: 600;
   color: #fff;
+  cursor: pointer;
+}
+.timeline-point.active {
+  background: #fff;
+  color: #000;
 }
 
 /* Footer */
@@ -212,7 +214,7 @@ footer {
 /* Responsive */
 @media (max-width: 992px) {
   .image-left, .image-right { width: 280px; height: 280px; }
-  .image-right { margin-top: 300px; }
+  .image-right { margin-top: 0; }
 }
 
 @media (max-width: 768px) {
@@ -224,9 +226,8 @@ footer {
     max-width: 520px;
     height: 300px;
   }
-  .image-right { margin-top: 0; }
   .hero .placeholder { margin-left: 0; margin-right: 0; width: 100%; }
   .content-section, .carousel-section, .timeline-section { padding: 0 16px; }
-  .carousel-btn { display: none; } /* esconder setas em mobile */
+  .carousel-btn { display: none; }
   .carousel-item { height: 180px; margin-right: 14px; }
 }
