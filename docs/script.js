@@ -6,20 +6,34 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.classList.toggle("show");
   });
 
-  // Carrosséis com setas
-  document.querySelectorAll(".carousel-container").forEach(container => {
-    const carousel = container.querySelector(".carousel");
+  // Função para carrosséis infinitos
+  function setupCarousel(carouselId, visibleItems) {
+    const container = document.querySelector(`#${carouselId}`);
+    const track = container.querySelector(".carousel-track");
+    const items = Array.from(track.children);
     const prevBtn = container.querySelector(".prev");
     const nextBtn = container.querySelector(".next");
-    const visible = parseInt(container.getAttribute("data-visible")) || 1;
-    const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 20; // largura + gap
+
+    let index = 0;
+
+    function updateCarousel() {
+      const itemWidth = items[0].offsetWidth + 20; // largura + margin
+      track.style.transform = `translateX(${-index * itemWidth}px)`;
+    }
 
     prevBtn.addEventListener("click", () => {
-      carousel.scrollBy({ left: -itemWidth * visible, behavior: "smooth" });
+      index = (index - 1 + items.length) % items.length;
+      updateCarousel();
     });
 
     nextBtn.addEventListener("click", () => {
-      carousel.scrollBy({ left: itemWidth * visible, behavior: "smooth" });
+      index = (index + 1) % items.length;
+      updateCarousel();
     });
-  });
+
+    updateCarousel();
+  }
+
+  setupCarousel("carousel1", 3);
+  setupCarousel("carousel2", 4);
 });
