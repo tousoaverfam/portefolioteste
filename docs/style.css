@@ -21,46 +21,16 @@ header {
   z-index: 10;
 }
 
-.logo h1 {
-  font-size: 32px;
-  letter-spacing: 4px;
-  margin-bottom: 6px;
-}
-
-.logo p {
-  font-size: 14px;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-}
+.logo h1 { font-size: 32px; letter-spacing: 4px; margin-bottom: 6px; }
+.logo p { font-size: 14px; letter-spacing: 3px; margin-bottom: 10px; }
 
 /* Nav */
-nav {
-  margin-top: 15px;
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 14px;
-  text-transform: uppercase;
-  font-size: 15px;
-  font-weight: 300;
-}
-
-nav a.ativo {
-  border-bottom: 2px solid #fff;
-}
+nav { margin-top: 15px; }
+nav a { color: #fff; text-decoration: none; margin: 0 14px; text-transform: uppercase; font-size: 15px; font-weight: 300; }
+nav a.ativo { border-bottom: 2px solid #fff; }
 
 /* Mobile nav */
-.hamburger {
-  display: none;
-  cursor: pointer;
-  position: absolute;
-  top: 25px;
-  left: 20px;
-  font-size: 26px;
-}
-
+.hamburger { display: none; cursor: pointer; position: absolute; top: 25px; left: 20px; font-size: 26px; }
 @media (max-width: 768px) {
   .hamburger { display: block; }
   nav { display: none; flex-direction: column; background: #111; position: absolute; top: 80px; left:0; width: 100%; padding: 20px; }
@@ -68,7 +38,7 @@ nav a.ativo {
   nav a { margin: 10px 0; }
 }
 
-/* HERO (full width) */
+/* HERO (full width, static no-hover) */
 .hero { width: 100%; }
 .hero .placeholder {
   width: 100vw;
@@ -80,7 +50,7 @@ nav a.ativo {
   justify-content: center;
   font-size: 22px;
   font-weight: 700;
-  margin-left: calc(50% - 50vw); /* ensure full-bleed on centered layout */
+  margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: transparent;
 }
@@ -95,6 +65,7 @@ nav a.ativo {
   justify-content: center;
   user-select: none;
   transition: background 0.22s ease;
+  box-sizing: border-box;
 }
 
 /* No hover for hero */
@@ -112,32 +83,40 @@ nav a.ativo {
   padding: 0 20px;
 }
 
-/* Content images and justified text */
+/* Content: justified text */
 .content-section .justificado { text-align: justify; }
 
-/* Larger images 1 and 2; image2 offset downwards */
+/* Larger images: image1 and image2 sizes
+   image2 offset top so its topo fica um pouco abaixo do bottom da image1,
+   mas sem excesso de espaçamento. */
 .image-left {
   float: left;
   width: 340px;
   height: 340px;
-  margin: 0 28px 20px 0;
+  margin: 0 28px 20px 0; /* espaço do texto igual ao da direita */
 }
 
 .image-right {
   float: right;
   width: 340px;
   height: 340px;
-  margin: 420px 0 20px 28px; /* top margin pushes it below bottom of image-left */
+  /* top offset: image-left height (340) + small gap (20) = 360 -> top da image2 fica ligeiramente abaixo do bottom da image1 */
+  margin: 360px 0 20px 28px;
 }
 
-/* Make sure text blocks clear floats if needed */
+/* Clear floats */
 .content-section::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Carousel sections */
+/* Spacing between homepage blocks (mais espaço entre secções) */
+.content-section { margin-bottom: 70px; }
+.carousel-section { margin-bottom: 70px; }
+.timeline-section { margin-bottom: 80px; }
+
+/* Carousel base */
 .carousel-section h2 { margin-bottom: 8px; }
 .carousel-section .subtitulo { color: #aaa; margin-bottom: 16px; }
 
@@ -145,27 +124,31 @@ nav a.ativo {
   position: relative;
   overflow: hidden;
   margin: 0 auto;
+  width: 100%;
 }
 
-/* track that will be translated by JS */
+/* The moving track */
 .carousel-track {
   display: flex;
   align-items: center;
-  transition: transform 0.5s ease;
+  transition: transform 0.45s ease;
   will-change: transform;
 }
 
-/* carousel item base */
+/* carousel item base — widths are set dynamically by JS; provide consistent height and gap */
 .carousel-item {
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 20px;
+  margin-right: 20px; /* gap between items */
   box-sizing: border-box;
 }
 
-/* carousel buttons */
+/* Add dashed stroke to items (placeholders already carry .placeholder class, so border will be visible) */
+.carousel-item.placeholder { border: 2px dashed #fff; background: transparent; }
+
+/* Carousel buttons */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -181,9 +164,6 @@ nav a.ativo {
 .carousel-btn:hover { background: rgba(255,255,255,0.18); }
 .carousel-btn.prev { left: 8px; }
 .carousel-btn.next { right: 8px; }
-
-/* Carousel container width (centered) */
-#carousel1, #carousel2 { max-width: 1200px; margin: 50px auto 0; }
 
 /* Timeline */
 .timeline-section { margin-top: 40px; }
@@ -229,10 +209,10 @@ footer {
   margin-top: 40px;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 992px) {
   .image-left, .image-right { width: 280px; height: 280px; }
-  .image-right { margin-top: 320px; }
+  .image-right { margin-top: 300px; }
 }
 
 @media (max-width: 768px) {
@@ -247,5 +227,6 @@ footer {
   .image-right { margin-top: 0; }
   .hero .placeholder { margin-left: 0; margin-right: 0; width: 100%; }
   .content-section, .carousel-section, .timeline-section { padding: 0 16px; }
-  .carousel-btn { display: none; } /* hide arrows on small screens - can enable if wanted */
+  .carousel-btn { display: none; } /* esconder setas em mobile */
+  .carousel-item { height: 180px; margin-right: 14px; }
 }
