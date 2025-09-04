@@ -10,9 +10,6 @@ body {
   background-color: #000;
   color: #fff;
   line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Cabeçalho */
@@ -88,131 +85,110 @@ nav a.ativo {
   }
 }
 
-/* Placeholder imagens */
+/* Placeholders */
 .placeholder {
-  width: 100%;
-  height: 400px;
-  background: #333;
+  background: none;
+  border: 2px dashed #666;
+  color: #999;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 24px;
-  color: #bbb;
+  align-items: center;
+  font-size: 14px;
+  text-align: center;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Conteúdo homepage */
-.conteudo-home {
+.placeholder:hover {
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+/* Hero */
+.hero .placeholder {
+  width: 100%;
+  height: 300px;
+  font-size: 22px;
+}
+
+/* Estrutura imagens + texto */
+.content-section {
   max-width: 1000px;
   margin: 40px auto;
   padding: 0 20px;
-  text-align: justify;
+  position: relative;
 }
 
-.conteudo-home h2 {
-  text-align: center;
-  font-weight: 500;
-  margin-bottom: 25px;
-}
-
-/* Imagem alinhada à esquerda */
-.img-esquerda {
+.image-left {
   float: left;
+  width: 200px;
+  height: 200px;
   margin: 0 20px 20px 0;
-  max-width: 40%;
-  height: auto;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
 }
 
-.img-direita {
+.image-right {
   float: right;
-  margin: 40px 0 20px 20px; /* mais abaixo */
-  max-width: 40%;
-  height: auto;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
+  width: 200px;
+  height: 200px;
+  margin: 40px 0 20px 20px;
 }
 
-/* Hover efeito */
-.img-esquerda:hover,
-.img-direita:hover,
-.carousel-item:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Ajuste responsivo */
-@media (max-width: 768px) {
-  .img-esquerda, .img-direita {
-    float: none;
-    display: block;
-    margin: 20px auto;
-    max-width: 100%;
-  }
-}
-
-/* Carrosseis */
-.carrossel-section {
+/* Carrosséis */
+.carousel-section {
   max-width: 1200px;
   margin: 60px auto;
   padding: 0 20px;
   text-align: center;
 }
 
-.carrossel-section h2 {
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.carrossel-section .subtitulo {
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #aaa;
-}
-
 .carousel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
+  overflow: hidden;
+  margin-top: 20px;
 }
 
-.carousel {
+.carousel-track {
   display: flex;
-  overflow: hidden;
-  scroll-behavior: smooth;
-  gap: 20px;
-  max-width: 100%;
+  transition: transform 0.5s ease-in-out;
 }
 
 .carousel-item {
   flex: 0 0 auto;
-  background: #444;
-  width: 300px;
-  height: 200px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s;
+  height: 180px;
+  margin: 0 10px;
+}
+
+/* Carrossel 1 */
+#carousel1 .carousel-item {
+  width: calc((100% / 3) - 20px);
+}
+
+/* Carrossel 2 */
+#carousel2 .carousel-item {
+  width: calc((100% / 4) - 20px);
 }
 
 /* Botões carrossel */
-.carousel-container button {
-  background: none;
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
   border: none;
   color: #fff;
-  font-size: 40px;
+  font-size: 28px;
   cursor: pointer;
   padding: 10px;
+  z-index: 2;
 }
 
-.carousel-container button:hover {
-  color: #aaa;
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
 }
 
 /* Rodapé */
@@ -221,6 +197,5 @@ footer {
   padding: 20px;
   background: #111;
   font-size: 14px;
-  margin-top: auto;
-  width: 100%;
+  margin-top: 40px;
 }
