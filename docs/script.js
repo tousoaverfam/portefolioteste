@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Função para carrosséis infinitos
-  function setupCarousel(carouselId, visibleItems) {
+  function setupCarousel(carouselId) {
     const container = document.querySelector(`#${carouselId}`);
     const track = container.querySelector(".carousel-track");
     const items = Array.from(track.children);
@@ -34,6 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCarousel();
   }
 
-  setupCarousel("carousel1", 3);
-  setupCarousel("carousel2", 4);
+  setupCarousel("carousel1");
+  setupCarousel("carousel2");
 });
