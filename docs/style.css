@@ -5,33 +5,35 @@
   box-sizing: border-box;
 }
 
+/* Basic */
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #000;
+  background: #000;
   color: #fff;
   line-height: 1.6;
 }
 
-/* Cabeçalho */
+/* Header */
 header {
   text-align: center;
-  padding: 40px 20px 30px 20px;
+  padding: 40px 20px 30px;
   position: relative;
+  z-index: 10;
 }
 
 .logo h1 {
   font-size: 32px;
   letter-spacing: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .logo p {
   font-size: 14px;
   letter-spacing: 3px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
-/* Menu */
+/* Nav */
 nav {
   margin-top: 15px;
 }
@@ -49,7 +51,7 @@ nav a.ativo {
   border-bottom: 2px solid #fff;
 }
 
-/* Menu mobile */
+/* Mobile nav */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -60,158 +62,190 @@ nav a.ativo {
 }
 
 @media (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    background: #111;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 200px;
-    padding: 20px;
-  }
-
-  nav a {
-    display: block;
-    margin: 12px 0;
-  }
-
-  nav.show {
-    display: flex;
-  }
-
-  .hamburger {
-    display: block;
-  }
+  .hamburger { display: block; }
+  nav { display: none; flex-direction: column; background: #111; position: absolute; top: 80px; left:0; width: 100%; padding: 20px; }
+  nav.show { display: flex; }
+  nav a { margin: 10px 0; }
 }
 
-/* Hero */
+/* HERO (full width) */
+.hero { width: 100%; }
 .hero .placeholder {
-  width: 100%;
-  height: 300px;
+  width: 100vw;
+  max-width: none;
+  height: 320px;
   border: 3px dashed #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 30px;
+  font-weight: 700;
+  margin-left: calc(50% - 50vw); /* ensure full-bleed on centered layout */
+  margin-right: calc(50% - 50vw);
+  background: transparent;
 }
 
+/* Placeholder default (tracejado) */
 .placeholder {
   border: 2px dashed #fff;
+  background: transparent;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  color: #fff;
-  font-size: 16px;
   user-select: none;
-  transition: background 0.3s;
+  transition: background 0.22s ease;
 }
 
-.placeholder:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
+/* No hover for hero */
+.no-hover:hover { background: transparent; cursor: default; }
 
-.no-hover:hover {
-  background: transparent;
-}
+/* Hover for other placeholders */
+.placeholder:not(.no-hover):hover { background: rgba(255,255,255,0.08); cursor: pointer; }
 
-/* Conteúdo */
-section {
+/* Global section sizing: same max width for sections below hero */
+.content-section,
+.carousel-section,
+.timeline-section {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-section h2 {
-  text-align: center;
-  font-weight: 500;
-  margin-bottom: 20px;
-}
+/* Content images and justified text */
+.content-section .justificado { text-align: justify; }
 
+/* Larger images 1 and 2; image2 offset downwards */
 .image-left {
   float: left;
-  width: 250px;
-  height: 250px;
-  margin: 0 20px 20px 0;
+  width: 340px;
+  height: 340px;
+  margin: 0 28px 20px 0;
 }
 
 .image-right {
   float: right;
-  width: 250px;
-  height: 250px;
-  margin: 40px 0 20px 20px;
+  width: 340px;
+  height: 340px;
+  margin: 420px 0 20px 28px; /* top margin pushes it below bottom of image-left */
 }
 
-/* Carrosséis */
-.carousel-section {
-  margin: 60px auto;
-  text-align: center;
+/* Make sure text blocks clear floats if needed */
+.content-section::after {
+  content: "";
+  display: table;
+  clear: both;
 }
+
+/* Carousel sections */
+.carousel-section h2 { margin-bottom: 8px; }
+.carousel-section .subtitulo { color: #aaa; margin-bottom: 16px; }
 
 .carousel-container {
   position: relative;
   overflow: hidden;
-  margin: 20px auto;
-  max-width: 1000px;
+  margin: 0 auto;
 }
 
+/* track that will be translated by JS */
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-item {
-  min-width: 100%;
-  height: 200px;
-  border: 2px dashed #fff;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 18px;
+  transition: transform 0.5s ease;
+  will-change: transform;
 }
 
-/* Ajustes diferentes por carrossel */
-#carousel1 .carousel-item {
-  min-width: calc(100% / 3);
+/* carousel item base */
+.carousel-item {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  box-sizing: border-box;
 }
 
-#carousel2 .carousel-item {
-  min-width: calc(100% / 4);
-}
-
+/* carousel buttons */
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255,255,255,0.08);
   border: none;
   color: #fff;
   font-size: 28px;
   cursor: pointer;
-  padding: 10px 15px;
-  transition: background 0.3s;
+  padding: 10px 12px;
+  z-index: 5;
+}
+.carousel-btn:hover { background: rgba(255,255,255,0.18); }
+.carousel-btn.prev { left: 8px; }
+.carousel-btn.next { right: 8px; }
+
+/* Carousel container width (centered) */
+#carousel1, #carousel2 { max-width: 1200px; margin: 50px auto 0; }
+
+/* Timeline */
+.timeline-section { margin-top: 40px; }
+.timeline { position: relative; padding: 30px 10px; }
+.timeline-bar {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  top: 50%;
+  height: 4px;
+  background: #333;
+  transform: translateY(-50%);
+  z-index: 1;
+  border-radius: 2px;
+}
+.timeline-points {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  gap: 10px;
+}
+.timeline-point {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #000;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
 }
 
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.carousel-btn.prev {
-  left: 10px;
-}
-
-.carousel-btn.next {
-  right: 10px;
-}
-
-/* Rodapé */
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;
   background: #111;
   font-size: 14px;
   margin-top: 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .image-left, .image-right { width: 280px; height: 280px; }
+  .image-right { margin-top: 320px; }
+}
+
+@media (max-width: 768px) {
+  .image-left, .image-right {
+    float: none;
+    display: block;
+    margin: 18px auto;
+    width: 100%;
+    max-width: 520px;
+    height: 300px;
+  }
+  .image-right { margin-top: 0; }
+  .hero .placeholder { margin-left: 0; margin-right: 0; width: 100%; }
+  .content-section, .carousel-section, .timeline-section { padding: 0 16px; }
+  .carousel-btn { display: none; } /* hide arrows on small screens - can enable if wanted */
 }
