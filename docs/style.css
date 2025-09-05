@@ -86,31 +86,46 @@ nav a.ativo { border-bottom: 2px solid #fff; }
 /* Content: justified text */
 .content-section .justificado { text-align: justify; }
 
-/* Image placeholders */
+/* ---------- CONTENT INNER (nova estrutura) ---------- */
+/* wrapper que contém as 2 imagens e o bloco de texto */
+.content-inner {
+  position: relative;
+  /* o padding-bottom garante que o wrapper cresce com o texto e a imagem direita (que é posicionada bottom:0) ficará alinhada com o fundo do conteúdo */
+  padding-bottom: 20px;
+}
+
+/* dimensões das imagens laterais */
 .image-left,
 .image-right {
   width: 340px;
   height: 340px;
+  /* a classe .placeholder já fornece o stroke tracejado */
 }
 
-/* imagem 1 → sem margem topo/esquerda */
+/* image-left: encostada à esquerda e ao topo do bloco */
 .image-left {
-  float: left;
-  margin: 0 20px 20px 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
 }
 
-/* imagem 2 → sem margem direita/fundo */
+/* image-right: encostada à direita e ao fundo do bloco (alinha ao bottom do texto) */
 .image-right {
-  float: right;
-  margin: 20px 0 0 20px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0;
 }
 
-/* Clear floats */
-.content-section::after {
-  content: "";
-  display: table;
-  clear: both;
+/* texto central: afasta-se das imagens pela largura + gap (20px) */
+.text-wrap {
+  padding-left: calc(340px + 20px);
+  padding-right: calc(340px + 20px);
 }
+
+/* Clearfix substituído: content-inner gere o fluxo */
+.content-section .text-wrap .justificado { text-align: justify; }
 
 /* Spacing between homepage blocks */
 .content-section { margin-bottom: 70px; }
@@ -215,22 +230,27 @@ footer {
   margin-top: 40px;
 }
 
-/* Responsive */
+/* Responsive adjustments */
 @media (max-width: 992px) {
   .image-left, .image-right { width: 280px; height: 280px; }
+  .text-wrap { padding-left: calc(280px + 16px); padding-right: calc(280px + 16px); }
 }
 
 @media (max-width: 768px) {
+  /* mobile: empilha imagens e centraliza; texto ocupa 100% (mantemos consistência com o resto do site) */
   .image-left, .image-right {
-    float: none;
-    display: block;
-    margin: 18px auto;
+    position: static;
     width: 100%;
     max-width: 520px;
     height: 300px;
+    display: block;
+    margin: 18px auto;
   }
+
+  .text-wrap { padding-left: 0; padding-right: 0; }
+
   .hero .placeholder { margin-left: 0; margin-right: 0; width: 100%; }
   .content-section, .carousel-section, .timeline-section { padding: 0 16px; }
-  .carousel-btn { display: none; }
+  .carousel-btn { display: none; } /* esconder setas em mobile */
   .carousel-item { height: 180px; margin-right: 14px; }
 }
