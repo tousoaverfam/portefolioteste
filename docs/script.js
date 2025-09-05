@@ -87,16 +87,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // drag/swipe support
-    let isDown = false, startX = 0, startTranslate = 0;
+    // drag/swipe + click vs drag detection
+    let isDown = false, startX = 0, startTranslate = 0, dragged = false;
+
     track.addEventListener("mousedown", e => {
-      isDown = true; startX = e.pageX;
+      isDown = true; dragged = false;
+      startX = e.pageX;
       startTranslate = getTranslateXFromTransform(getComputedStyle(track).transform);
       track.style.transition = "none"; track.style.cursor = "grabbing";
     });
-    window.addEventListener("mouseup", () => {
+    window.addEventListener("mouseup", e => {
       if (!isDown) return;
       isDown = false; track.style.cursor = "";
+      const dx = e.pageX - startX;
+      if (Math.abs(dx) < 5) {
+        // clique seco → abre link
+        const targetItem = e.target.closest(".carousel-item");
+        if (targetItem && link) window.location.href = link;
+        return;
+      }
       const currentTranslate = Math.abs(getTranslateXFromTransform(getComputedStyle(track).transform));
       const slot = itemWidth + gap;
       currentIndex = Math.round(currentTranslate / slot);
@@ -106,29 +115,35 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("mousemove", e => {
       if (!isDown) return;
       const dx = e.pageX - startX;
+      if (Math.abs(dx) > 5) dragged = true;
       track.style.transform = `translateX(${startTranslate + dx}px)`;
     });
 
     // touch
     let touchStartX = 0, touchStartTranslate = 0;
-    track.addEventListener("touchstart", e => { touchStartX = e.touches[0].pageX; touchStartTranslate = getTranslateXFromTransform(getComputedStyle(track).transform); track.style.transition = "none"; }, { passive: true });
-    track.addEventListener("touchmove", e => { const dx = e.touches[0].pageX - touchStartX; track.style.transform = `translateX(${touchStartTranslate + dx}px)`; }, { passive: true });
-    track.addEventListener("touchend", () => {
+    track.addEventListener("touchstart", e => {
+      touchStartX = e.touches[0].pageX;
+      touchStartTranslate = getTranslateXFromTransform(getComputedStyle(track).transform);
+      track.style.transition = "none";
+      dragged = false;
+    }, { passive: true });
+    track.addEventListener("touchmove", e => {
+      const dx = e.touches[0].pageX - touchStartX;
+      if (Math.abs(dx) > 5) dragged = true;
+      track.style.transform = `translateX(${touchStartTranslate + dx}px)`;
+    }, { passive: true });
+    track.addEventListener("touchend", e => {
+      if (!dragged) {
+        const targetItem = e.target.closest(".carousel-item");
+        if (targetItem && link) window.location.href = link;
+        return;
+      }
       const currentTranslate = Math.abs(getTranslateXFromTransform(getComputedStyle(track).transform));
       const slot = itemWidth + gap;
       currentIndex = Math.round(currentTranslate / slot);
       track.style.transition = "transform 0.45s ease";
       track.style.transform = `translateX(-${currentIndex * slot}px)`;
     });
-
-    // Make carousel items clickable
-    items.forEach(it => {
-      it.addEventListener("click", () => {
-        if(link) window.location.href = link;
-      });
-    });
-
-    return { container, track };
   }
 
   // Initialize carousels
