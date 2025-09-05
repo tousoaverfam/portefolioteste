@@ -24,27 +24,38 @@
     </nav>
   </header>
 
-  <!-- HERO (cobre toda a largura; sem hover) -->
+  <!-- HERO (full width; sem hover) -->
   <section class="hero">
     <div class="placeholder no-hover">Imagem do topo</div>
   </section>
 
-  <!-- Conteúdo com imagens e texto (Imagem 1 e Imagem 2) -->
+  <!-- Conteúdo reestruturado -->
   <section class="content-section">
-    <a href="sobre.html" class="image-left placeholder">Imagem 1</a>
+    <div class="content-inner">
+      <!-- Imagem 1 (esquerda, top/left aligned) -->
+      <a href="sobre.html" class="image-left placeholder">Imagem 1</a>
 
-    <p class="justificado">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Sed vel nulla at sapien luctus porta eget non lectus. Phasellus vitae vestibulum justo. Mauris id imperdiet lorem. Ut porta orci et eros malesuada, nec facilisis augue viverra. Quisque dictum, sem non condimentum malesuada, orci nisl volutpat risus, eget tempor elit urna eget lorem. Integer nec dictum ipsum. Nullam tincidunt magna eget suscipit tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec auctor ligula vitae erat ullamcorper, sit amet ullamcorper neque facilisis. Etiam tempor consectetur tincidunt. Nunc posuere, nisl eu condimentum lobortis, magna magna efficitur orci, et pharetra lacus nunc ut sapien. Vestibulum id metus a lorem convallis viverra. Suspendisse potenti.
-    </p>
+      <!-- Imagem 2 (direita, bottom/right aligned) -->
+      <a href="universidade.html" class="image-right placeholder">Imagem 2</a>
 
-    <a href="universidade.html" class="image-right placeholder">Imagem 2</a>
+      <!-- Texto que fica entre as imagens; o padding evita sobreposição -->
+      <div class="text-wrap">
+        <p class="justificado">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Sed vel nulla at sapien luctus porta eget non lectus. Phasellus vitae vestibulum justo. Mauris id imperdiet lorem. Ut porta orci et eros malesuada, nec facilisis augue viverra. Quisque dictum, sem non condimentum malesuada, orci nisl volutpat risus, eget tempor elit urna eget lorem. Integer nec dictum ipsum. Nullam tincidunt magna eget suscipit tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+        </p>
 
-    <p class="justificado">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae lacinia purus. Donec dictum lorem et felis viverra, sit amet ultricies urna iaculis. Nulla non orci non magna cursus malesuada. Aliquam erat volutpat. Proin nec interdum risus. Vestibulum et augue ac justo volutpat euismod non vitae turpis. Mauris sagittis purus in elit ullamcorper mattis. Cras et varius erat. Sed commodo, magna quis pharetra tincidunt, ipsum tortor facilisis ligula, nec hendrerit sapien lorem nec sem. Aenean fermentum felis non sem venenatis, sed congue justo lacinia. Curabitur at feugiat metus. Proin nec suscipit nulla. Pellentesque vel sapien vel nibh sagittis ullamcorper. Integer in augue id nunc mattis iaculis. Vivamus laoreet nunc sed augue fringilla, eget vulputate arcu sodales. Praesent sit amet erat ac justo vulputate dictum. Fusce at ipsum id nisl pharetra tristique. Donec id dui in ante suscipit convallis. Donec sit amet arcu vitae arcu efficitur pharetra. In hac habitasse platea dictumst.
-    </p>
+        <p class="justificado">
+          Donec auctor ligula vitae erat ullamcorper, sit amet ullamcorper neque facilisis. Etiam tempor consectetur tincidunt. Nunc posuere, nisl eu condimentum lobortis, magna magna efficitur orci, et pharetra lacus nunc ut sapien. Vestibulum id metus a lorem convallis viverra. Suspendisse potenti. Integer in augue id nunc mattis iaculis. Vivamus laoreet nunc sed augue fringilla, eget vulputate arcu sodales. Praesent sit amet erat ac justo vulputate dictum. Fusce at ipsum id nisl pharetra tristique. Donec id dui in ante suscipit convallis. Donec sit amet arcu vitae arcu efficitur pharetra. In hac habitasse platea dictumst.
+        </p>
+
+        <p class="justificado">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat, velit et efficitur aliquet, urna urna mattis augue, non laoreet massa lectus a est. Aliquam erat volutpat. Curabitur nec sem at odio luctus gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer vitae sapien id lorem pulvinar malesuada.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <!-- Carrossel 1 (4 totais, 3 visíveis) -->
+  <!-- Carrossel 1 -->
   <section class="carousel-section">
     <h2>Título Carrossel 1</h2>
     <p class="subtitulo">Lorem ipsum dolor sit amet, consectetuer adipiscing elit — subtítulo de exemplo.</p>
@@ -61,7 +72,7 @@
     </div>
   </section>
 
-  <!-- Carrossel 2 (8 totais, 4 visíveis) -->
+  <!-- Carrossel 2 -->
   <section class="carousel-section">
     <h2>Título Carrossel 2</h2>
     <p class="subtitulo">Lorem ipsum dolor sit amet, consectetuer adipiscing elit — subtítulo de exemplo.</p>
@@ -82,7 +93,7 @@
     </div>
   </section>
 
-  <!-- Timeline (abaixo do carrossel 2) -->
+  <!-- Timeline -->
   <section class="timeline-section">
     <h2>Título da Timeline</h2>
     <p class="subtitulo">Subtítulo lorem ipsum para a timeline.</p>
