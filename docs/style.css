@@ -86,20 +86,16 @@ nav a.ativo { border-bottom: 2px solid #fff; }
 /* Content: justified text */
 .content-section .justificado { text-align: justify; }
 
-/* Larger images: image1 and image2 sizes */
-.image-left {
-  float: left;
+/* Image placeholders */
+.image-left,
+.image-right {
   width: 340px;
   height: 340px;
-  margin: 0 28px 20px 0; /* espaço do texto igual ao da direita */
+  margin: 20px; /* iguais em todas as arestas */
 }
 
-.image-right {
-  float: right;
-  width: 340px;
-  height: 340px;
-  margin: 0 0 20px 28px; /* alinhamento como image-left */
-}
+.image-left { float: left; }
+.image-right { float: right; }
 
 /* Clear floats */
 .content-section::after {
@@ -214,7 +210,6 @@ footer {
 /* Responsive */
 @media (max-width: 992px) {
   .image-left, .image-right { width: 280px; height: 280px; }
-  .image-right { margin-top: 0; }
 }
 
 @media (max-width: 768px) {
