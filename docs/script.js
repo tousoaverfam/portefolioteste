@@ -1,161 +1,79 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // mobile nav toggle
-  const hamburger = document.querySelector(".hamburger");
-  const nav = document.querySelector("nav");
-  if (hamburger && nav) {
-    hamburger.addEventListener("click", () => nav.classList.toggle("show"));
+// Menu mobile
+document.querySelector(".hamburger").addEventListener("click", () => {
+  document.querySelector("nav").classList.toggle("show");
+});
+
+// Carrosséis infinitos com clique e arrasto
+document.querySelectorAll(".carousel-container").forEach((carousel) => {
+  const track = carousel.querySelector(".carousel-track");
+  const items = Array.from(track.children);
+  const prevButton = carousel.querySelector(".prev");
+  const nextButton = carousel.querySelector(".next");
+
+  let index = 0;
+  const total = items.length;
+  const visible =
+    carousel.dataset.carousel === "1" ? 3 : 4; // nº visíveis por carrossel
+
+  function updateCarousel() {
+    const itemWidth = items[0].offsetWidth + 16; // inclui margem
+    track.style.transform = `translateX(-${index * itemWidth}px)`;
   }
 
-  function getTranslateXFromTransform(transform) {
-    if (!transform || transform === 'none') return 0;
-    const m = transform.match(/matrix3d\((.+)\)/);
-    if (m) {
-      const values = m[1].split(',').map(v => parseFloat(v));
-      return values[12] || 0;
-    }
-    const m2 = transform.match(/matrix\((.+)\)/);
-    if (m2) {
-      const values = m2[1].split(',').map(v => parseFloat(v));
-      return values[4] || 0;
-    }
-    return 0;
-  }
+  prevButton.addEventListener("click", () => {
+    index = (index - 1 + total) % total;
+    updateCarousel();
+  });
 
-  function initInfiniteCarousel(containerId, visibleCount, link) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+  nextButton.addEventListener("click", () => {
+    index = (index + 1) % total;
+    updateCarousel();
+  });
 
-    const track = container.querySelector(".carousel-track");
-    const prevBtn = container.querySelector(".prev");
-    const nextBtn = container.querySelector(".next");
-    if (!track || !prevBtn || !nextBtn) return;
+  // Clique vs arrasto
+  let isDragging = false;
+  let startX = 0;
+  let scrollLeft = 0;
 
-    const gap = 20;
-    const originals = Array.from(track.children);
-    const totalOriginal = originals.length;
-    if (totalOriginal === 0) return;
+  track.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    track.classList.add("dragging");
+  });
 
-    const clonesBefore = originals.slice(-visibleCount).map(n => n.cloneNode(true));
-    const clonesAfter = originals.slice(0, visibleCount).map(n => n.cloneNode(true));
-    clonesBefore.forEach(node => track.insertBefore(node, track.firstChild));
-    clonesAfter.forEach(node => track.appendChild(node));
+  track.addEventListener("mouseleave", () => (isDragging = false));
+  track.addEventListener("mouseup", () => {
+    isDragging = false;
+    track.classList.remove("dragging");
+  });
 
-    let items = Array.from(track.children);
-    let itemWidth = 0;
-    let currentIndex = visibleCount;
+  track.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    track.scrollLeft = scrollLeft - walk;
+  });
 
-    function setSizes() {
-      const containerWidth = container.clientWidth;
-      itemWidth = Math.floor((containerWidth - gap * (visibleCount - 1)) / visibleCount);
-      items.forEach((it, idx) => {
-        it.style.width = itemWidth + "px";
-        it.style.flex = `0 0 ${itemWidth}px`;
-        it.style.marginRight = (idx === items.length - 1 ? "0px" : gap + "px");
-      });
-      track.style.transition = "none";
-      track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-      void track.offsetWidth;
-      track.style.transition = "transform 0.45s ease";
-    }
-
-    setSizes();
-    window.addEventListener("resize", () => setTimeout(setSizes, 120));
-
-    function moveTo(newIndex) {
-      currentIndex = newIndex;
-      track.style.transition = "transform 0.45s ease";
-      track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-    }
-
-    prevBtn.addEventListener("click", () => moveTo(currentIndex - 1));
-    nextBtn.addEventListener("click", () => moveTo(currentIndex + 1));
-
-    track.addEventListener("transitionend", () => {
-      if (currentIndex >= visibleCount + totalOriginal) {
-        track.style.transition = "none";
-        currentIndex = currentIndex - totalOriginal;
-        track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-        void track.offsetWidth;
-        track.style.transition = "transform 0.45s ease";
-      }
-      if (currentIndex < visibleCount) {
-        track.style.transition = "none";
-        currentIndex = currentIndex + totalOriginal;
-        track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-        void track.offsetWidth;
-        track.style.transition = "transform 0.45s ease";
+  // Tornar itens clicáveis apenas em clique simples
+  items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      if (carousel.dataset.carousel === "1") {
+        window.location.href = "portefolio.html";
+      } else {
+        window.location.href = "projetos.html";
       }
     });
+  });
+});
 
-    // drag/swipe + click vs drag detection
-    let isDown = false, startX = 0, startTranslate = 0, dragged = false;
-
-    track.addEventListener("mousedown", e => {
-      isDown = true; dragged = false;
-      startX = e.pageX;
-      startTranslate = getTranslateXFromTransform(getComputedStyle(track).transform);
-      track.style.transition = "none"; track.style.cursor = "grabbing";
-    });
-    window.addEventListener("mouseup", e => {
-      if (!isDown) return;
-      isDown = false; track.style.cursor = "";
-      const dx = e.pageX - startX;
-      if (Math.abs(dx) < 5) {
-        // clique seco → abre link
-        const targetItem = e.target.closest(".carousel-item");
-        if (targetItem && link) window.location.href = link;
-        return;
-      }
-      const currentTranslate = Math.abs(getTranslateXFromTransform(getComputedStyle(track).transform));
-      const slot = itemWidth + gap;
-      currentIndex = Math.round(currentTranslate / slot);
-      track.style.transition = "transform 0.45s ease";
-      track.style.transform = `translateX(-${currentIndex * slot}px)`;
-    });
-    window.addEventListener("mousemove", e => {
-      if (!isDown) return;
-      const dx = e.pageX - startX;
-      if (Math.abs(dx) > 5) dragged = true;
-      track.style.transform = `translateX(${startTranslate + dx}px)`;
-    });
-
-    // touch
-    let touchStartX = 0, touchStartTranslate = 0;
-    track.addEventListener("touchstart", e => {
-      touchStartX = e.touches[0].pageX;
-      touchStartTranslate = getTranslateXFromTransform(getComputedStyle(track).transform);
-      track.style.transition = "none";
-      dragged = false;
-    }, { passive: true });
-    track.addEventListener("touchmove", e => {
-      const dx = e.touches[0].pageX - touchStartX;
-      if (Math.abs(dx) > 5) dragged = true;
-      track.style.transform = `translateX(${touchStartTranslate + dx}px)`;
-    }, { passive: true });
-    track.addEventListener("touchend", e => {
-      if (!dragged) {
-        const targetItem = e.target.closest(".carousel-item");
-        if (targetItem && link) window.location.href = link;
-        return;
-      }
-      const currentTranslate = Math.abs(getTranslateXFromTransform(getComputedStyle(track).transform));
-      const slot = itemWidth + gap;
-      currentIndex = Math.round(currentTranslate / slot);
-      track.style.transition = "transform 0.45s ease";
-      track.style.transform = `translateX(-${currentIndex * slot}px)`;
-    });
-  }
-
-  // Initialize carousels
-  initInfiniteCarousel("carousel1", 3, "portefolio.html");
-  initInfiniteCarousel("carousel2", 4, "projetos.html");
-
-  // Timeline clicks
-  const timelinePoints = document.querySelectorAll(".timeline-point");
-  timelinePoints.forEach(pt => {
-    pt.addEventListener("click", () => {
-      timelinePoints.forEach(p => p.classList.remove("active"));
-      pt.classList.add("active");
-    });
+// Timeline
+document.querySelectorAll(".timeline-step").forEach((step) => {
+  step.addEventListener("click", () => {
+    document.querySelectorAll(".timeline-step").forEach((s) =>
+      s.classList.remove("active")
+    );
+    step.classList.add("active");
   });
 });
