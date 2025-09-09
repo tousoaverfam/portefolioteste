@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Início - Blogger Design</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -24,85 +24,75 @@
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- Imagem do topo -->
   <section class="hero">
     <div class="placeholder no-hover">Imagem do topo</div>
   </section>
 
-  <!-- Secção de texto + imagens -->
+  <!-- Texto e imagens -->
   <section class="content-section">
-    <div class="text-with-images">
-      <img src="" alt="Imagem 1" class="img-left placeholder" />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-        volutpat, tortor sed facilisis placerat, lorem purus tincidunt odio,
-        at pretium mi risus nec erat. Vestibulum ac tristique nulla. Morbi sed
-        ultricies libero. Sed non purus sit amet sapien cursus dignissim sit
-        amet et sapien. Suspendisse potenti. Integer dapibus velit vitae orci
-        convallis, sed laoreet risus viverra. Pellentesque habitant morbi
-        tristique senectus et netus et malesuada fames ac turpis egestas.
-        Donec non pretium est. Nulla facilisi. Etiam quis quam eu eros
-        tincidunt malesuada ut eget mi. Suspendisse vel varius orci. Duis
-        tempor nunc nec viverra dictum. Sed hendrerit ex vel sapien interdum
-        sodales. In at fringilla turpis. Maecenas tincidunt eros nec augue
-        faucibus tristique.
-      </p>
-      <img src="" alt="Imagem 2" class="img-right placeholder" />
-    </div>
+    <div class="placeholder image-left" onclick="location.href='sobre.html'">Imagem 1</div>
+    <div class="placeholder image-right" onclick="location.href='universidade.html'">Imagem 2</div>
+    <p class="justificado">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit tincidunt aliquam. Donec nec justo eu velit maximus malesuada. Morbi faucibus, odio vitae malesuada tristique, lorem ipsum semper lectus, nec ultricies purus neque vel ligula. Sed a felis vitae lorem hendrerit posuere. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam erat volutpat. Quisque sit amet nisl id lectus ultricies faucibus vel non lorem. 
+      Suspendisse potenti. Donec euismod nisl et ligula convallis, vitae porta purus laoreet. Vestibulum feugiat luctus lorem, in viverra justo tincidunt eget. Etiam fermentum velit sed massa viverra, non tincidunt turpis dignissim. Phasellus faucibus sapien id tincidunt laoreet. Integer fringilla posuere tortor, non vestibulum ex vehicula ut. Curabitur ut neque vitae neque egestas finibus vitae non ex. Vivamus fermentum feugiat turpis, at aliquet velit eleifend ut.
+    </p>
   </section>
 
   <!-- Carrossel 1 -->
   <section class="carousel-section">
-    <h2>Título Carrossel 1</h2>
+    <h2>Carrossel 1</h2>
     <p class="subtitulo">Subtítulo do carrossel 1</p>
-    <div class="carousel-container" data-carousel="1">
-      <button class="prev">‹</button>
+    <div class="carousel-container" data-visible="3" data-total="4" data-link="portefolio.html">
+      <button class="carousel-btn prev">‹</button>
       <div class="carousel-track">
-        <div class="carousel-item placeholder">Carrossel 1 - Imagem 1</div>
-        <div class="carousel-item placeholder">Carrossel 1 - Imagem 2</div>
-        <div class="carousel-item placeholder">Carrossel 1 - Imagem 3</div>
-        <div class="carousel-item placeholder">Carrossel 1 - Imagem 4</div>
+        <div class="carousel-item placeholder">Imagem C1-1</div>
+        <div class="carousel-item placeholder">Imagem C1-2</div>
+        <div class="carousel-item placeholder">Imagem C1-3</div>
+        <div class="carousel-item placeholder">Imagem C1-4</div>
       </div>
-      <button class="next">›</button>
+      <button class="carousel-btn next">›</button>
     </div>
   </section>
 
   <!-- Carrossel 2 -->
   <section class="carousel-section">
-    <h2>Título Carrossel 2</h2>
+    <h2>Carrossel 2</h2>
     <p class="subtitulo">Subtítulo do carrossel 2</p>
-    <div class="carousel-container" data-carousel="2">
-      <button class="prev">‹</button>
+    <div class="carousel-container" data-visible="4" data-total="8" data-link="projetos.html">
+      <button class="carousel-btn prev">‹</button>
       <div class="carousel-track">
-        <div class="carousel-item placeholder">Carrossel 2 - Imagem 1</div>
-        <div class="carousel-item placeholder">Carrossel 2 - Imagem 2</div>
-        <div class="carousel-item placeholder">Carrossel 2 - Imagem 3</div>
-        <div class="carousel-item placeholder">Carrossel 2 - Imagem 4</div>
-        <div class="carousel-item placeholder">Carrossel 2 - Imagem 5</div>
-        <div class="carousel-item placeholder">Carrossel 2 - Imagem 6</div>
-        <div class="carousel-item placeholder">Carrossel 2 - Imagem 7</div>
-        <div class="carousel-item placeholder">Carrossel 2 - Imagem 8</div>
+        <div class="carousel-item placeholder">Imagem C2-1</div>
+        <div class="carousel-item placeholder">Imagem C2-2</div>
+        <div class="carousel-item placeholder">Imagem C2-3</div>
+        <div class="carousel-item placeholder">Imagem C2-4</div>
+        <div class="carousel-item placeholder">Imagem C2-5</div>
+        <div class="carousel-item placeholder">Imagem C2-6</div>
+        <div class="carousel-item placeholder">Imagem C2-7</div>
+        <div class="carousel-item placeholder">Imagem C2-8</div>
       </div>
-      <button class="next">›</button>
+      <button class="carousel-btn next">›</button>
     </div>
   </section>
 
   <!-- Timeline -->
   <section class="timeline-section">
-    <h2>Título Timeline</h2>
+    <h2>Timeline</h2>
     <p class="subtitulo">Subtítulo da timeline</p>
     <div class="timeline">
-      <div class="timeline-step active">1</div>
-      <div class="timeline-step">2</div>
-      <div class="timeline-step">3</div>
-      <div class="timeline-step">4</div>
+      <div class="timeline-bar"></div>
+      <div class="timeline-points">
+        <div class="timeline-point active">1</div>
+        <div class="timeline-point">2</div>
+        <div class="timeline-point">3</div>
+        <div class="timeline-point">4</div>
+      </div>
     </div>
   </section>
 
   <footer>
     <p>© 2025 O Teu Nome. Todos os direitos reservados.</p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
