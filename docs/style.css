@@ -254,3 +254,40 @@ footer {
   .carousel-btn { display: none; } /* esconder setas em mobile */
   .carousel-item { height: 180px; margin-right: 14px; }
 }
+
+/* Portfolio / Projetos Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 70px;
+  padding: 0 20px;
+}
+
+.portfolio-grid a.placeholder {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #fff;
+  background: transparent;
+  transition: background 0.22s ease;
+  color: #fff;
+  text-decoration: none;
+}
+
+.portfolio-grid a.placeholder:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .portfolio-grid a.placeholder {
+    height: 180px;
+  }
+}
