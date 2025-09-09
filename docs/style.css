@@ -5,252 +5,221 @@
   box-sizing: border-box;
 }
 
-/* Basic */
 body {
   font-family: 'Montserrat', sans-serif;
-  background: #000;
-  color: #fff;
   line-height: 1.6;
+  color: #222;
+  background: #fafafa;
 }
 
 /* Header */
 header {
-  text-align: center;
-  padding: 40px 20px 30px;
-  position: relative;
-  z-index: 10;
-}
-
-.logo h1 { font-size: 32px; letter-spacing: 4px; margin-bottom: 6px; }
-.logo p { font-size: 14px; letter-spacing: 3px; margin-bottom: 10px; }
-
-/* Nav */
-nav { margin-top: 15px; }
-nav a { color: #fff; text-decoration: none; margin: 0 14px; text-transform: uppercase; font-size: 15px; font-weight: 300; }
-nav a.ativo { border-bottom: 2px solid #fff; }
-
-/* Mobile nav */
-.hamburger { display: none; cursor: pointer; position: absolute; top: 25px; left: 20px; font-size: 26px; }
-@media (max-width: 768px) {
-  .hamburger { display: block; }
-  nav { display: none; flex-direction: column; background: #111; position: absolute; top: 80px; left:0; width: 100%; padding: 20px; }
-  nav.show { display: flex; }
-  nav a { margin: 10px 0; }
-}
-
-/* HERO (full width, static no-hover) */
-.hero { width: 100%; }
-.hero .placeholder {
-  width: 100vw;
-  max-width: none;
-  height: 320px;
-  border: 3px dashed #fff;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 700;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  background: transparent;
-}
-
-/* Placeholder default (tracejado) */
-.placeholder {
-  border: 2px dashed #fff;
-  background: transparent;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #111;
   color: #fff;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+}
+.logo p {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+nav {
+  display: flex;
+  gap: 1.2rem;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+nav a.ativo {
+  border-bottom: 2px solid #fff;
+}
+
+/* Mobile menu */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: #111;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+  }
+  nav.show {
+    display: flex;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Hero */
+.hero {
+  width: 100%;
+}
+.hero .placeholder {
+  width: 100%;
+  height: 300px;
+  border: 3px dashed #aaa;
   display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;
-  transition: background 0.22s ease;
-  box-sizing: border-box;
+  font-weight: bold;
 }
 
-/* No hover for hero */
-.no-hover:hover { background: transparent; cursor: default; }
+/* Placeholder images */
+.placeholder {
+  background: #eee;
+  border: 3px dashed #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.placeholder:hover:not(.no-hover) {
+  background: rgba(0, 0, 0, 0.1);
+}
+.no-hover {
+  pointer-events: none;
+}
 
-/* Hover for other placeholders */
-.placeholder:not(.no-hover):hover { background: rgba(255,255,255,0.08); cursor: pointer; }
-
-/* Global section sizing: same max width for sections below hero */
-.content-section,
-.carousel-section,
-.timeline-section {
+/* Text with images */
+.content-section {
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
+  margin: 2rem auto;
+  padding: 1rem;
 }
-
-/* Content: justified text */
-.content-section .justificado { text-align: justify; }
-
-/* ---------- CONTENT INNER (nova estrutura) ---------- */
-/* wrapper que contém as 2 imagens e o bloco de texto */
-.content-inner {
+.text-with-images {
   position: relative;
-  /* o padding-bottom garante que o wrapper cresce com o texto e a imagem direita (que é posicionada bottom:0) ficará alinhada com o fundo do conteúdo */
-  padding-bottom: 20px;
+  text-align: justify;
+}
+.text-with-images .img-left {
+  float: left;
+  width: 220px;
+  height: 220px;
+  margin: 0 1rem 1rem 0;
+}
+.text-with-images .img-right {
+  float: right;
+  width: 220px;
+  height: 220px;
+  margin: 1rem 0 0 1rem;
 }
 
-/* dimensões das imagens laterais */
-.image-left,
-.image-right {
-  width: 340px;
-  height: 340px;
-  /* a classe .placeholder já fornece o stroke tracejado */
+/* Carrosséis */
+.carousel-section {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 1rem;
+  text-align: center;
 }
-
-/* image-left: encostada à esquerda e ao topo do bloco */
-.image-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: 0;
+.carousel-section h2 {
+  margin-bottom: 0.5rem;
 }
-
-/* image-right: encostada à direita e ao fundo do bloco (alinha ao bottom do texto) */
-.image-right {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  margin: 0;
-}
-
-/* texto central: afasta-se das imagens pela largura + gap (20px) */
-.text-wrap {
-  padding-left: calc(340px + 20px);
-  padding-right: calc(340px + 20px);
-}
-
-/* Clearfix substituído: content-inner gere o fluxo */
-.content-section .text-wrap .justificado { text-align: justify; }
-
-/* Spacing between homepage blocks */
-.content-section { margin-bottom: 70px; }
-.carousel-section { margin-bottom: 70px; }
-.timeline-section { margin-bottom: 80px; }
-
-/* Carousel base */
-.carousel-section h2 { margin-bottom: 8px; }
-.carousel-section .subtitulo { color: #aaa; margin-bottom: 16px; }
-
 .carousel-container {
   position: relative;
   overflow: hidden;
-  margin: 0 auto;
-  width: 100%;
 }
-
-/* The moving track */
 .carousel-track {
   display: flex;
-  align-items: center;
-  transition: transform 0.45s ease;
-  will-change: transform;
+  transition: transform 0.5s ease-in-out;
 }
-
-/* carousel item base */
 .carousel-item {
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 20px;
-  box-sizing: border-box;
+  min-width: 300px;
+  height: 180px;
+  margin: 0.5rem;
+  flex-shrink: 0;
 }
-
-/* Add dashed stroke to items (placeholders) */
-.carousel-item.placeholder { border: 2px dashed #fff; background: transparent; }
-
-/* Carousel buttons */
-.carousel-btn {
+.carousel-container[data-carousel="1"] .carousel-item {
+  width: calc((100% - 3rem) / 3); /* 3 visíveis */
+}
+.carousel-container[data-carousel="2"] .carousel-item {
+  width: calc((100% - 4rem) / 4); /* 4 visíveis */
+}
+.carousel-container button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.08);
-  border: none;
+  background: #111;
   color: #fff;
-  font-size: 28px;
+  border: none;
+  font-size: 2rem;
   cursor: pointer;
-  padding: 10px 12px;
-  z-index: 5;
+  z-index: 2;
+  padding: 0.3rem 0.6rem;
 }
-.carousel-btn:hover { background: rgba(255,255,255,0.18); }
-.carousel-btn.prev { left: 8px; }
-.carousel-btn.next { right: 8px; }
+.carousel-container .prev {
+  left: 0;
+}
+.carousel-container .next {
+  right: 0;
+}
 
 /* Timeline */
-.timeline-section { margin-top: 40px; }
-.timeline { position: relative; padding: 30px 10px; }
-.timeline-bar {
-  position: absolute;
-  left: 40px;
-  right: 40px;
-  top: 50%;
-  height: 4px;
-  background: #333;
-  transform: translateY(-50%);
-  z-index: 1;
-  border-radius: 2px;
+.timeline-section {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 1rem;
+  text-align: center;
 }
-.timeline-points {
-  position: relative;
+.timeline {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 2;
-  gap: 10px;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
 }
-.timeline-point {
-  width: 34px;
-  height: 34px;
+.timeline-step {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #111;
   border-radius: 50%;
-  background: #000;
-  border: 2px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  color: #fff;
   cursor: pointer;
+  background: #111;
+  color: #fff;
+  font-weight: bold;
+  transition: all 0.3s;
 }
-.timeline-point.active {
+.timeline-step.active {
   background: #fff;
-  color: #000;
+  color: #111;
+}
+
+/* Grid pages (Portefólio & Projetos) */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.image-grid .placeholder {
+  width: 100%;
+  height: 200px;
 }
 
 /* Footer */
 footer {
+  margin-top: 3rem;
+  padding: 1rem;
   text-align: center;
-  padding: 20px;
   background: #111;
-  font-size: 14px;
-  margin-top: 40px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  .image-left, .image-right { width: 280px; height: 280px; }
-  .text-wrap { padding-left: calc(280px + 16px); padding-right: calc(280px + 16px); }
-}
-
-@media (max-width: 768px) {
-  /* mobile: empilha imagens e centraliza; texto ocupa 100% (mantemos consistência com o resto do site) */
-  .image-left, .image-right {
-    position: static;
-    width: 100%;
-    max-width: 520px;
-    height: 300px;
-    display: block;
-    margin: 18px auto;
-  }
-
-  .text-wrap { padding-left: 0; padding-right: 0; }
-
-  .hero .placeholder { margin-left: 0; margin-right: 0; width: 100%; }
-  .content-section, .carousel-section, .timeline-section { padding: 0 16px; }
-  .carousel-btn { display: none; } /* esconder setas em mobile */
-  .carousel-item { height: 180px; margin-right: 14px; }
+  color: #fff;
 }
