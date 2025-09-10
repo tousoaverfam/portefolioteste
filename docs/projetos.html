@@ -31,20 +31,19 @@
   <section class="content-section">
     <h2>Projetos</h2>
     <p class="justificado">
-      Nesta página vais poder explorar os diferentes projetos em que estive envolvido. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis purus vitae est fermentum cursus. Integer id lorem at libero sollicitudin efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      Nesta página vais poder explorar os diferentes projetos em que estive envolvido. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </p>
   </section>
 
-  <!-- Nova secção de Projetos -->
   <section class="portfolio-grid">
-    <a href="#" class="placeholder">Projeto 1</a>
-    <a href="#" class="placeholder">Projeto 2</a>
-    <a href="#" class="placeholder">Projeto 3</a>
-    <a href="#" class="placeholder">Projeto 4</a>
-    <a href="#" class="placeholder">Projeto 5</a>
-    <a href="#" class="placeholder">Projeto 6</a>
-    <a href="#" class="placeholder">Projeto 7</a>
-    <a href="#" class="placeholder">Projeto 8</a>
+    <a href="#" class="placeholder" data-title="Projeto 1">Projeto 1</a>
+    <a href="#" class="placeholder" data-title="Projeto 2">Projeto 2</a>
+    <a href="#" class="placeholder" data-title="Projeto 3">Projeto 3</a>
+    <a href="#" class="placeholder" data-title="Projeto 4">Projeto 4</a>
+    <a href="#" class="placeholder" data-title="Projeto 5">Projeto 5</a>
+    <a href="#" class="placeholder" data-title="Projeto 6">Projeto 6</a>
+    <a href="#" class="placeholder" data-title="Projeto 7">Projeto 7</a>
+    <a href="#" class="placeholder" data-title="Projeto 8">Projeto 8</a>
   </section>
 
   <footer>
@@ -52,5 +51,14 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Hover text overlay para projetos
+    const projectItems = document.querySelectorAll('.portfolio-grid a.placeholder');
+    projectItems.forEach(item => {
+      const title = item.getAttribute('data-title');
+      item.addEventListener('mouseenter', () => item.textContent = title);
+      item.addEventListener('mouseleave', () => item.textContent = title.replace('Projeto', 'Projeto'));
+    });
+  </script>
 </body>
 </html>
