@@ -30,12 +30,13 @@
 
   <section class="content-section">
     <h2>Portefólio 1</h2>
-    <p class="justificado">Conteúdo do Portefólio 1 a preencher.</p>
+    <p class="justificado">Conteúdo do Portefólio 1 (vazio por enquanto).</p>
   </section>
 
   <footer>
     <p>© 2025 O Teu Nome. Todos os direitos reservados.</p>
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
