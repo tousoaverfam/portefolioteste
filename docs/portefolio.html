@@ -6,46 +6,6 @@
   <title>Portefólio - Blogger Design</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* --- Portfolio grid local styles --- */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .portfolio-grid a.placeholder {
-      aspect-ratio: 1 / 1; /* quadrado */
-      border: 2px dashed #fff;
-      background: transparent;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      position: relative;
-      transition: background 0.22s ease;
-      font-weight: 600;
-    }
-    .portfolio-grid a.placeholder::after {
-      content: attr(data-title);
-      position: absolute;
-      opacity: 0;
-      transition: opacity 0.22s ease;
-      font-size: 18px;
-    }
-    .portfolio-grid a.placeholder:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .portfolio-grid a.placeholder:hover::after {
-      opacity: 1;
-    }
-    @media (max-width: 768px) {
-      .portfolio-grid { grid-template-columns: 1fr; }
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -70,16 +30,19 @@
 
   <section class="content-section">
     <h2>Portefólio</h2>
-    <p class="justificado">Explora aqui os meus trabalhos.</p>
+    <p class="justificado">
+      Aqui poderás encontrar os meus principais trabalhos e projetos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla tellus eget augue elementum, sit amet pharetra ligula egestas. Donec placerat, ligula id faucibus luctus, augue nibh feugiat arcu, sed malesuada risus lectus sed tortor. Proin vel libero id lacus efficitur feugiat.
+    </p>
   </section>
 
+  <!-- Nova secção de Portefólio -->
   <section class="portfolio-grid">
-    <a href="portefolio1.html" class="placeholder" data-title="Portefólio 1">Portefólio 1</a>
-    <a href="portefolio2.html" class="placeholder" data-title="Portefólio 2">Portefólio 2</a>
-    <a href="portefolio3.html" class="placeholder" data-title="Portefólio 3">Portefólio 3</a>
-    <a href="portefolio4.html" class="placeholder" data-title="Portefólio 4">Portefólio 4</a>
-    <a href="portefolio5.html" class="placeholder" data-title="Portefólio 5">Portefólio 5</a>
-    <a href="portefolio6.html" class="placeholder" data-title="Portefólio 6">Portefólio 6</a>
+    <a href="portefolio1.html" class="placeholder">Trabalho 1</a>
+    <a href="portefolio2.html" class="placeholder">Trabalho 2</a>
+    <a href="portefolio3.html" class="placeholder">Trabalho 3</a>
+    <a href="portefolio4.html" class="placeholder">Trabalho 4</a>
+    <a href="portefolio5.html" class="placeholder">Trabalho 5</a>
+    <a href="portefolio6.html" class="placeholder">Trabalho 6</a>
   </section>
 
   <footer>
