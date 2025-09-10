@@ -31,17 +31,17 @@
   <section class="content-section">
     <h2>Portefólio</h2>
     <p class="justificado">
-      Aqui poderás encontrar os meus principais trabalhos e projetos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla tellus eget augue elementum, sit amet pharetra ligula egestas.
+      Aqui poderás encontrar os meus principais trabalhos e projetos.
     </p>
   </section>
 
   <section class="portfolio-grid">
-    <a href="portefolio1.html" class="placeholder" data-title="Portefólio 1">Trabalho 1</a>
-    <a href="portefolio2.html" class="placeholder" data-title="Portefólio 2">Trabalho 2</a>
-    <a href="portefolio3.html" class="placeholder" data-title="Portefólio 3">Trabalho 3</a>
-    <a href="portefolio4.html" class="placeholder" data-title="Portefólio 4">Trabalho 4</a>
-    <a href="portefolio5.html" class="placeholder" data-title="Portefólio 5">Trabalho 5</a>
-    <a href="portefolio6.html" class="placeholder" data-title="Portefólio 6">Trabalho 6</a>
+    <a href="portefolio1.html" class="placeholder">Portefólio 1</a>
+    <a href="portefolio2.html" class="placeholder">Portefólio 2</a>
+    <a href="portefolio3.html" class="placeholder">Portefólio 3</a>
+    <a href="portefolio4.html" class="placeholder">Portefólio 4</a>
+    <a href="portefolio5.html" class="placeholder">Portefólio 5</a>
+    <a href="portefolio6.html" class="placeholder">Portefólio 6</a>
   </section>
 
   <footer>
@@ -49,15 +49,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Hover text overlay para portefólio
-    const portfolioItems = document.querySelectorAll('.portfolio-grid a.placeholder');
-    portfolioItems.forEach(item => {
-      const title = item.getAttribute('data-title');
-      item.addEventListener('mouseenter', () => item.textContent = title);
-      item.addEventListener('mouseleave', () => item.textContent = item.getAttribute('data-title').replace('Portefólio', 'Trabalho')));
-    });
-  </script>
 </body>
 </html>
-
