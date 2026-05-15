@@ -4,35 +4,70 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sobre Mim - Blogger Design</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
     <div class="hamburger">☰</div>
+
     <div class="logo">
       <h1>BLOGGER</h1>
       <p>DESIGN</p>
     </div>
+
     <nav>
       <a href="index.html">Início</a>
-      <a href="sobre.html" class="ativo">Sobre mim</a>
+      <a href="sobre.html" class="ativo">Sobre Mim</a>
       <a href="portefolio.html">Portefólio</a>
       <a href="projetos.html">Projetos</a>
-      <a href="universidade.html">Universidade</a>
       <a href="contactos.html">Contactos</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="placeholder no-hover">Imagem do topo</div>
+    <div class="placeholder no-hover">Imagem Principal</div>
   </section>
 
   <section class="content-section">
-    <h2>Sobre Mim</h2>
-    <p class="justificado">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id velit vitae urna placerat feugiat...
-    </p>
+    <div class="two-column-layout">
+
+      <div class="left-images">
+        <div class="small-image placeholder">Imagem 1</div>
+        <div class="small-image placeholder">Imagem 2</div>
+      </div>
+
+      <div class="right-text">
+        <h2>Sobre Mim</h2>
+
+        <p class="justificado">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id velit vitae urna placerat feugiat.
+        </p>
+
+        <p class="justificado">
+          Curabitur nec sem at odio luctus gravida. Pellentesque habitant morbi tristique senectus et netus.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="carousel-section">
+    <h2>Galeria</h2>
+
+    <div class="carousel-container" id="carousel2" data-visible="3">
+      <button class="carousel-btn prev">‹</button>
+
+      <div class="carousel-track">
+        <div class="carousel-item placeholder">Imagem</div>
+        <div class="carousel-item placeholder">Imagem</div>
+        <div class="carousel-item placeholder">Imagem</div>
+        <div class="carousel-item placeholder">Imagem</div>
+      </div>
+
+      <button class="carousel-btn next">›</button>
+    </div>
   </section>
 
   <footer>
