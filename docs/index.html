@@ -9,70 +9,49 @@
 </head>
 <body class="home-layout">
 
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <h1>BLOGGER</h1>
-      <p>DESIGN</p>
-    </div>
+<aside class="sidebar">
+  <h1>BLOGGER</h1>
+  <p>DESIGN</p>
 
-    <nav class="sidebar-nav">
-      <a href="index.html" class="ativo">Início</a>
-      <a href="sobre.html">Sobre Mim</a>
-      <a href="portefolio.html">Portefólio</a>
-      <a href="projetos.html">Projetos</a>
-      <a href="contactos.html">Contactos</a>
-    </nav>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre Mim</a>
+    <a href="portefolio.html">Portefólio</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="contactos.html">Contactos</a>
+  </nav>
+</aside>
 
-    <div class="sidebar-socials">
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Behance</a>
-    </div>
-  </aside>
+<main class="home-main">
 
-  <main class="home-main">
+  <section class="home-hero">
+    <div class="placeholder">Hero</div>
+  </section>
 
-    <section class="home-hero">
-      <div class="placeholder no-hover">Imagem Hero Homepage</div>
-    </section>
+  <section class="home-grid">
+    <a href="sobre.html" class="home-card">Sobre Mim</a>
+    <a href="portefolio.html" class="home-card">Portefólio</a>
+    <a href="projetos.html" class="home-card">Projetos</a>
+    <a href="contactos.html" class="home-card">Contactos</a>
+  </section>
 
-    <section class="home-grid">
-      <a href="sobre.html" class="home-card placeholder">Sobre Mim</a>
-      <a href="portefolio.html" class="home-card placeholder">Portefólio</a>
-      <a href="projetos.html" class="home-card placeholder">Projetos</a>
-      <a href="contactos.html" class="home-card placeholder">Contactos</a>
-    </section>
+  <section class="carousel-section">
+    <div class="carousel-container" id="carousel1">
+      <button class="carousel-btn prev">‹</button>
 
-    <section class="home-text">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer placerat, velit et efficitur aliquet, urna urna mattis augue, non laoreet massa lectus a est.
-      </p>
-
-      <p>
-        Curabitur nec sem at odio luctus gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-      </p>
-    </section>
-
-    <section class="carousel-section">
-      <h2>Projetos em Destaque</h2>
-      <p class="subtitulo">Explora alguns dos meus trabalhos recentes.</p>
-
-      <div class="carousel-container" id="carousel1" data-visible="3">
-        <button class="carousel-btn prev" aria-label="Anterior">‹</button>
-
-        <div class="carousel-track">
-          <div class="carousel-item placeholder">Projeto 1</div>
-          <div class="carousel-item placeholder">Projeto 2</div>
-          <div class="carousel-item placeholder">Projeto 3</div>
-          <div class="carousel-item placeholder">Projeto 4</div>
-        </div>
-
-        <button class="carousel-btn next" aria-label="Seguinte">›</button>
+      <div class="carousel-track">
+        <div class="carousel-item">1</div>
+        <div class="carousel-item">2</div>
+        <div class="carousel-item">3</div>
+        <div class="carousel-item">4</div>
       </div>
-    </section>
 
-  </main>
+      <button class="carousel-btn next">›</button>
+    </div>
+  </section>
 
-  <script src="script.js"></script>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
