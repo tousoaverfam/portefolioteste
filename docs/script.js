@@ -1,16 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  function initInfiniteCarousel(id, visibleCount) {
+
+    const container = document.getElementById(id);
+
+    if (!container) return;
+
+    const track = container.querySelector(".carousel-track");
+    const prevBtn = container.querySelector(".prev");
     const nextBtn = container.querySelector(".next");
+
+    if (!track || !prevBtn || !nextBtn) return;
 
     const gap = 20;
 
     const originals = Array.from(track.children);
     const totalOriginal = originals.length;
 
-    const clonesBefore = originals.slice(-visibleCount).map(n => n.cloneNode(true));
-    const clonesAfter = originals.slice(0, visibleCount).map(n => n.cloneNode(true));
+    const clonesBefore = originals
+      .slice(-visibleCount)
+      .map(node => node.cloneNode(true));
 
-    clonesBefore.forEach(node => track.insertBefore(node, track.firstChild));
-    clonesAfter.forEach(node => track.appendChild(node));
+    const clonesAfter = originals
+      .slice(0, visibleCount)
+      .map(node => node.cloneNode(true));
+
+    clonesBefore.forEach(node => {
+      track.insertBefore(node, track.firstChild);
+    });
+
+    clonesAfter.forEach(node => {
+      track.appendChild(node);
+    });
 
     let items = Array.from(track.children);
     let itemWidth = 0;
@@ -20,16 +41,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const containerWidth = container.clientWidth;
 
-      itemWidth = Math.floor((containerWidth - gap * (visibleCount - 1)) / visibleCount);
+      itemWidth = Math.floor(
+        (containerWidth - gap * (visibleCount - 1)) / visibleCount
+      );
 
-      items.forEach((it, idx) => {
-        it.style.width = itemWidth + "px";
-        it.style.flex = `0 0 ${itemWidth}px`;
-        it.style.marginRight = (idx === items.length - 1 ? "0px" : gap + "px");
+      items.forEach((item, index) => {
+
+        item.style.width = itemWidth + "px";
+        item.style.flex = `0 0 ${itemWidth}px`;
+
+        item.style.marginRight =
+          index === items.length - 1 ? "0px" : gap + "px";
       });
 
       track.style.transition = "none";
-      track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
+
+      track.style.transform =
+        `translateX(-${currentIndex * (itemWidth + gap)}px)`;
 
       void track.offsetWidth;
 
@@ -38,23 +66,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setSizes();
 
-    window.addEventListener("resize", () => setTimeout(setSizes, 120));
+    window.addEventListener("resize", () => {
+      setTimeout(setSizes, 120);
+    });
 
     function moveTo(newIndex) {
+
       currentIndex = newIndex;
-      track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
+
+      track.style.transform =
+        `translateX(-${currentIndex * (itemWidth + gap)}px)`;
     }
 
-    prevBtn.addEventListener("click", () => moveTo(currentIndex - 1));
-    nextBtn.addEventListener("click", () => moveTo(currentIndex + 1));
+    prevBtn.addEventListener("click", () => {
+      moveTo(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener("click", () => {
+      moveTo(currentIndex + 1);
+    });
 
     track.addEventListener("transitionend", () => {
 
       if (currentIndex >= visibleCount + totalOriginal) {
 
         track.style.transition = "none";
+
         currentIndex = currentIndex - totalOriginal;
-        track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
+
+        track.style.transform =
+          `translateX(-${currentIndex * (itemWidth + gap)}px)`;
 
         void track.offsetWidth;
 
@@ -64,8 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (currentIndex < visibleCount) {
 
         track.style.transition = "none";
+
         currentIndex = currentIndex + totalOriginal;
-        track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
+
+        track.style.transform =
+          `translateX(-${currentIndex * (itemWidth + gap)}px)`;
 
         void track.offsetWidth;
 
@@ -75,6 +119,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   initInfiniteCarousel("carousel1", 3);
-  initInfiniteCarousel("carousel2", 3);
 
 });
