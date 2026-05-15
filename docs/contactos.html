@@ -4,41 +4,51 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contactos - Blogger Design</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="hamburger">☰</div>
-    <div class="logo">
-      <h1>BLOGGER</h1>
-      <p>DESIGN</p>
-    </div>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="sobre.html">Sobre mim</a>
-      <a href="portefolio.html">Portefólio</a>
-      <a href="projetos.html">Projetos</a>
-      <a href="universidade.html">Universidade</a>
-      <a href="contactos.html" class="ativo">Contactos</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="placeholder no-hover">Imagem do topo</div>
-  </section>
+<header>
+  <div class="hamburger">☰</div>
 
-  <section class="content-section">
+  <div class="logo">
+    <h1>BLOGGER</h1>
+    <p>DESIGN</p>
+  </div>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre Mim</a>
+    <a href="portefolio.html">Portefólio</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="contactos.html" class="ativo">Contactos</a>
+  </nav>
+</header>
+
+<section class="contact-layout">
+
+  <div class="contact-info">
     <h2>Contactos</h2>
-    <p class="justificado">
-      Podes entrar em contacto comigo através do formulário, email ou redes sociais.
-    </p>
-  </section>
 
-  <footer>
-    <p>© 2025 O Teu Nome. Todos os direitos reservados.</p>
-  </footer>
+    <p>Email</p>
+    <p>Instagram</p>
+    <p>LinkedIn</p>
+  </div>
 
-  <script src="script.js"></script>
+  <form class="contact-form">
+    <input type="text" placeholder="Nome">
+    <input type="email" placeholder="Email">
+    <textarea placeholder="Mensagem"></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+
+</section>
+
+<footer>
+  <p>© 2025 O Teu Nome. Todos os direitos reservados.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
