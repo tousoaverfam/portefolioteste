@@ -1,90 +1,73 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  function initInfiniteCarousel(id, visibleCount) {
+  function initCarousel(id, visible = 3) {
 
     const container = document.getElementById(id);
     if (!container) return;
 
     const track = container.querySelector(".carousel-track");
-    const prevBtn = container.querySelector(".prev");
-    const nextBtn = container.querySelector(".next");
+    const prev = container.querySelector(".prev");
+    const next = container.querySelector(".next");
 
-    if (!track || !prevBtn || !nextBtn) return;
-
+    const itemsOriginal = Array.from(track.children);
+    const total = itemsOriginal.length;
     const gap = 20;
 
-    const originals = Array.from(track.children);
-    const totalOriginal = originals.length;
+    const clonesBefore = itemsOriginal.slice(-visible).map(el => el.cloneNode(true));
+    const clonesAfter = itemsOriginal.slice(0, visible).map(el => el.cloneNode(true));
 
-    const clonesBefore = originals.slice(-visibleCount).map(n => n.cloneNode(true));
-    const clonesAfter = originals.slice(0, visibleCount).map(n => n.cloneNode(true));
-
-    clonesBefore.forEach(n => track.insertBefore(n, track.firstChild));
-    clonesAfter.forEach(n => track.appendChild(n));
+    clonesBefore.forEach(el => track.insertBefore(el, track.firstChild));
+    clonesAfter.forEach(el => track.appendChild(el));
 
     let items = Array.from(track.children);
-    let currentIndex = visibleCount;
-    let itemWidth = 0;
+    let index = visible;
+    let width = 0;
 
-    function setSizes() {
+    function update() {
       const containerWidth = container.clientWidth;
 
-      itemWidth = Math.floor(
-        (containerWidth - gap * (visibleCount - 1)) / visibleCount
-      );
+      width = Math.floor((containerWidth - gap * (visible - 1)) / visible);
 
-      items.forEach((item, index) => {
-        item.style.width = itemWidth + "px";
-        item.style.flex = `0 0 ${itemWidth}px`;
-        item.style.marginRight = index === items.length - 1 ? "0px" : gap + "px";
+      items.forEach((item, i) => {
+        item.style.flex = `0 0 ${width}px`;
+        item.style.marginRight = i === items.length - 1 ? "0px" : gap + "px";
       });
 
       track.style.transition = "none";
-      track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
+      track.style.transform = `translateX(-${index * (width + gap)}px)`;
       void track.offsetWidth;
       track.style.transition = "transform 0.45s ease";
     }
 
-    function moveTo(newIndex) {
-      currentIndex = newIndex;
-      track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
+    function move(dir) {
+      index += dir;
+      track.style.transform = `translateX(-${index * (width + gap)}px)`;
     }
 
-    prevBtn.addEventListener("click", () => moveTo(currentIndex - 1));
-    nextBtn.addEventListener("click", () => moveTo(currentIndex + 1));
+    prev?.addEventListener("click", () => move(-1));
+    next?.addEventListener("click", () => move(1));
 
     track.addEventListener("transitionend", () => {
-
-      if (currentIndex >= visibleCount + totalOriginal) {
+      if (index >= total + visible) {
         track.style.transition = "none";
-        currentIndex -= totalOriginal;
-        track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-        void track.offsetWidth;
-        track.style.transition = "transform 0.45s ease";
+        index -= total;
       }
 
-      if (currentIndex < visibleCount) {
+      if (index < visible) {
         track.style.transition = "none";
-        currentIndex += totalOriginal;
-        track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-        void track.offsetWidth;
-        track.style.transition = "transform 0.45s ease";
+        index += total;
       }
+
+      track.style.transform = `translateX(-${index * (width + gap)}px)`;
+      void track.offsetWidth;
+      track.style.transition = "transform 0.45s ease";
     });
 
-    setSizes();
-    window.addEventListener("resize", () => setTimeout(setSizes, 100));
+    update();
+    window.addEventListener("resize", () => setTimeout(update, 100));
   }
 
-  initInfiniteCarousel("carousel1", 3);
-  initInfiniteCarousel("carousel2", 3);
-
-  // MENU MOBILE
-  document.querySelectorAll(".hamburger").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const nav = btn.parentElement.querySelector("nav");
-      if (nav) nav.classList.toggle("show");
-    });
-  });
+  initCarousel("carousel1", 3);
+  initCarousel("carousel2", 3);
 
 });
