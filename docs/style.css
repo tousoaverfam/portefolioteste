@@ -1,173 +1,68 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  height:420px;
+  font-size:28px;
+  letter-spacing:4px;
 }
 
-/* Basic */
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: #000;
-  color: #fff;
-  line-height: 1.6;
+.home-text{
+  max-width:1000px;
+  margin-top:60px;
 }
 
-/* Header */
-header {
-  text-align: center;
-  padding: 40px 20px 30px;
-  position: relative;
-  z-index: 10;
+.home-text p{
+  margin-bottom:20px;
 }
 
-.logo h1 { font-size: 32px; letter-spacing: 4px; margin-bottom: 6px; }
-.logo p { font-size: 14px; letter-spacing: 3px; margin-bottom: 10px; }
-
-/* Nav */
-nav { margin-top: 15px; }
-nav a { color: #fff; text-decoration: none; margin: 0 14px; text-transform: uppercase; font-size: 15px; font-weight: 300; }
-nav a.ativo { border-bottom: 2px solid #fff; }
-
-/* Mobile nav */
-.hamburger { display: none; cursor: pointer; position: absolute; top: 25px; left: 20px; font-size: 26px; }
-@media (max-width: 768px) {
-  .hamburger { display: block; }
-  nav { display: none; flex-direction: column; background: #111; position: absolute; top: 80px; left:0; width: 100%; padding: 20px; }
-  nav.show { display: flex; }
-  nav a { margin: 10px 0; }
+.hamburger{
+  display:none;
 }
 
-/* HERO (full width, static no-hover) */
-.hero { width: 100%; }
-.hero .placeholder {
-  width: 100vw;
-  max-width: none;
-  height: 320px;
-  border: 3px dashed #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 700;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  background: transparent;
+@media(max-width:992px){
+
+  .two-column-layout,
+  .contact-layout,
+  .portfolio-grid,
+  .home-grid{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .home-main{
+    margin-left:0;
+    padding:20px;
+  }
 }
 
-/* Placeholder default (tracejado) */
-.placeholder {
-  border: 2px dashed #fff;
-  background: transparent;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  transition: background 0.22s ease;
-  box-sizing: border-box;
-}
+@media(max-width:768px){
 
-/* No hover for hero */
-.no-hover:hover { background: transparent; cursor: default; }
+  .hamburger{
+    display:block;
+    position:absolute;
+    top:30px;
+    left:20px;
+    font-size:28px;
+    cursor:pointer;
+  }
 
-/* Hover for other placeholders */
-.placeholder:not(.no-hover):hover { background: rgba(255,255,255,0.08); cursor: pointer; }
+  nav{
+    display:none;
+    flex-direction:column;
+    gap:20px;
+    margin-top:30px;
+  }
 
-/* Global section sizing: same max width for sections below hero */
-.content-section,
-.carousel-section,
-.timeline-section {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
+  nav.show{
+    display:flex;
+  }
 
-/* Content: justified text */
-.content-section .justificado { text-align: justify; }
+  .hero .placeholder{
+    height:340px;
+  }
 
-/* ---------- CONTENT INNER (nova estrutura) ---------- */
-.content-inner { position: relative; padding-bottom: 20px; }
-.image-left, .image-right { width: 340px; height: 340px; }
-.image-left { position: absolute; left: 0; top: 0; margin: 0; }
-.image-right { position: absolute; right: 0; bottom: 0; margin: 0; }
-.text-wrap { padding-left: calc(340px + 20px); padding-right: calc(340px + 20px); }
-
-/* Spacing */
-.content-section { margin-bottom: 70px; }
-.carousel-section { margin-bottom: 70px; }
-.timeline-section { margin-bottom: 80px; }
-
-/* Carousel base */
-.carousel-section h2 { margin-bottom: 8px; }
-.carousel-section .subtitulo { color: #aaa; margin-bottom: 16px; }
-.carousel-container { position: relative; overflow: hidden; margin: 0 auto; width: 100%; }
-.carousel-track { display: flex; align-items: center; transition: transform 0.45s ease; will-change: transform; }
-.carousel-item { height: 200px; display: flex; align-items: center; justify-content: center; margin-right: 20px; box-sizing: border-box; }
-.carousel-item.placeholder { border: 2px dashed #fff; background: transparent; }
-.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.08); border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 10px 12px; z-index: 5; }
-.carousel-btn:hover { background: rgba(255,255,255,0.18); }
-.carousel-btn.prev { left: 8px; }
-.carousel-btn.next { right: 8px; }
-
-/* Timeline */
-.timeline-section { margin-top: 40px; }
-.timeline { position: relative; padding: 30px 10px; }
-.timeline-bar { position: absolute; left: 40px; right: 40px; top: 50%; height: 4px; background: #333; transform: translateY(-50%); z-index: 1; border-radius: 2px; }
-.timeline-points { position: relative; display: flex; justify-content: space-between; align-items: center; z-index: 2; gap: 10px; }
-.timeline-point { width: 34px; height: 34px; border-radius: 50%; background: #000; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; cursor: pointer; }
-.timeline-point.active { background: #fff; color: #000; }
-
-/* Footer */
-footer { text-align: center; padding: 20px; background: #111; font-size: 14px; margin-top: 40px; }
-
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  .image-left, .image-right { width: 280px; height: 280px; }
-  .text-wrap { padding-left: calc(280px + 16px); padding-right: calc(280px + 16px); }
-}
-@media (max-width: 768px) {
-  .image-left, .image-right { position: static; width: 100%; max-width: 520px; height: 300px; display: block; margin: 18px auto; }
-  .text-wrap { padding-left: 0; padding-right: 0; }
-  .hero .placeholder { margin-left: 0; margin-right: 0; width: 100%; }
-  .content-section, .carousel-section, .timeline-section { padding: 0 16px; }
-  .carousel-btn { display: none; }
-  .carousel-item { height: 180px; margin-right: 14px; }
-}
-
-/* Portfolio / Projetos Grid */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(570px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto 70px;
-  padding: 0 20px;
-}
-.portfolio-grid a.placeholder {
-  width: 570px;
-  height: 570px;
-  border: 2px dashed #fff;
-  background: transparent;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: background 0.22s ease;
-  font-weight: 600;
-  font-size: 18px;
-}
-.portfolio-grid a.placeholder:hover { background: rgba(255,255,255,0.08); }
-
-/* Responsive portfolio */
-@media (max-width: 768px) {
-  .portfolio-grid { grid-template-columns: 1fr; gap: 16px; }
-  .portfolio-grid a.placeholder {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1/1;
-    max-width: 570px;
-    margin: 0 auto;
+  .home-card{
+    height:320px;
   }
 }
