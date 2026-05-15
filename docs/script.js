@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function initInfiniteCarousel(id, visibleCount) {
 
     const container = document.getElementById(id);
-
     if (!container) return;
 
     const track = container.querySelector(".carousel-track");
@@ -17,28 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const originals = Array.from(track.children);
     const totalOriginal = originals.length;
 
-    const clonesBefore = originals
-      .slice(-visibleCount)
-      .map(node => node.cloneNode(true));
+    const clonesBefore = originals.slice(-visibleCount).map(n => n.cloneNode(true));
+    const clonesAfter = originals.slice(0, visibleCount).map(n => n.cloneNode(true));
 
-    const clonesAfter = originals
-      .slice(0, visibleCount)
-      .map(node => node.cloneNode(true));
-
-    clonesBefore.forEach(node => {
-      track.insertBefore(node, track.firstChild);
-    });
-
-    clonesAfter.forEach(node => {
-      track.appendChild(node);
-    });
+    clonesBefore.forEach(n => track.insertBefore(n, track.firstChild));
+    clonesAfter.forEach(n => track.appendChild(n));
 
     let items = Array.from(track.children);
-    let itemWidth = 0;
     let currentIndex = visibleCount;
+    let itemWidth = 0;
 
     function setSizes() {
-
       const containerWidth = container.clientWidth;
 
       itemWidth = Math.floor(
@@ -46,78 +34,57 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       items.forEach((item, index) => {
-
         item.style.width = itemWidth + "px";
         item.style.flex = `0 0 ${itemWidth}px`;
-
-        item.style.marginRight =
-          index === items.length - 1 ? "0px" : gap + "px";
+        item.style.marginRight = index === items.length - 1 ? "0px" : gap + "px";
       });
 
       track.style.transition = "none";
-
-      track.style.transform =
-        `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-
+      track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
       void track.offsetWidth;
-
       track.style.transition = "transform 0.45s ease";
     }
 
-    setSizes();
-
-    window.addEventListener("resize", () => {
-      setTimeout(setSizes, 120);
-    });
-
     function moveTo(newIndex) {
-
       currentIndex = newIndex;
-
-      track.style.transform =
-        `translateX(-${currentIndex * (itemWidth + gap)}px)`;
+      track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
     }
 
-    prevBtn.addEventListener("click", () => {
-      moveTo(currentIndex - 1);
-    });
-
-    nextBtn.addEventListener("click", () => {
-      moveTo(currentIndex + 1);
-    });
+    prevBtn.addEventListener("click", () => moveTo(currentIndex - 1));
+    nextBtn.addEventListener("click", () => moveTo(currentIndex + 1));
 
     track.addEventListener("transitionend", () => {
 
       if (currentIndex >= visibleCount + totalOriginal) {
-
         track.style.transition = "none";
-
-        currentIndex = currentIndex - totalOriginal;
-
-        track.style.transform =
-          `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-
+        currentIndex -= totalOriginal;
+        track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
         void track.offsetWidth;
-
         track.style.transition = "transform 0.45s ease";
       }
 
       if (currentIndex < visibleCount) {
-
         track.style.transition = "none";
-
-        currentIndex = currentIndex + totalOriginal;
-
-        track.style.transform =
-          `translateX(-${currentIndex * (itemWidth + gap)}px)`;
-
+        currentIndex += totalOriginal;
+        track.style.transform = `translateX(-${currentIndex * (itemWidth + gap)}px)`;
         void track.offsetWidth;
-
         track.style.transition = "transform 0.45s ease";
       }
     });
+
+    setSizes();
+    window.addEventListener("resize", () => setTimeout(setSizes, 100));
   }
 
   initInfiniteCarousel("carousel1", 3);
+  initInfiniteCarousel("carousel2", 3);
+
+  // MENU MOBILE
+  document.querySelectorAll(".hamburger").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const nav = btn.parentElement.querySelector("nav");
+      if (nav) nav.classList.toggle("show");
+    });
+  });
 
 });
