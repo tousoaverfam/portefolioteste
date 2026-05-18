@@ -34,4 +34,15 @@ if(prevBtn){
 }
 
 setInterval(() => {
+
+  if(heroSlides.length > 0){
+    currentSlide++;
+
+    if(currentSlide >= heroSlides.length){
+      currentSlide = 0;
+    }
+
+    updateHeroCarousel();
+  }
+
 }, 5000);
