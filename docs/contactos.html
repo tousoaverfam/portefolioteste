@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contactos</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -10,20 +10,44 @@
 
 <body>
 
-<header class="topbar">
-  <a href="index.html">Início</a>
-  <a href="contactos.html" class="ativo">Contactos</a>
-</header>
+<aside class="sidebar">
+  <h1>BLOGGER DESIGN</h1>
 
-<section class="contact">
-  <h2>Contactos</h2>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre Mim</a>
+    <a href="portefolio.html">Portefólio</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="contactos.html" class="ativo">Contactos</a>
+  </nav>
+</aside>
 
-  <div class="contact-box">
-    <p>Email</p>
-    <p>Instagram</p>
-    <p>LinkedIn</p>
-  </div>
-</section>
+<main class="home-main">
 
+  <section class="hero">
+    <div class="placeholder">CONTACTOS</div>
+  </section>
+
+  <section class="home-grid">
+    <div class="home-card">Email</div>
+    <div class="home-card">Instagram</div>
+    <div class="home-card">LinkedIn</div>
+    <div class="home-card">Behance</div>
+  </section>
+
+  <section class="carousel-container" id="carousel1">
+    <button class="carousel-btn prev">‹</button>
+
+    <div class="carousel-track">
+      <div class="carousel-item">Disponível para trabalho freelance</div>
+      <div class="carousel-item">Disponível para colaborações</div>
+    </div>
+
+    <button class="carousel-btn next">›</button>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
